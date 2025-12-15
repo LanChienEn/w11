@@ -1,66 +1,8 @@
-<h1>About</h1>
-<p>可攜程式套件:</p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/portable_2026.7z">portable_2026.7z</a> (387MB)</p>
-<p style="padding-left: 60px;">解開壓縮後，雙點擊 start_miniconda3.bat 啟動可攜系統，雙點擊 stop.bat 關閉可攜系統。</p>
-<p style="padding-left: 60px;">可攜系統啟動後，在命令列執行 conda activate y:\envs\cmsimde 可進入能執行 CMSiMDE 的環境。</p>
-<p style="padding-left: 60px;">若希望可攜系統啟動直接進入 cmsimde 環境，可將 start_miniconda3.bat 檔案中第 98 行: call "%CONDA_ROOT%\Scripts\activate.bat" %ENV_NAME% 更換為 call "%CONDA_ROOT%\Scripts\activate.bat" %Disk%:\envs\cmsimde</p>
-<h1>Reeborg</h1>
-<p><a href="https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py">https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py</a></p>
-<p><a href="https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1_east_west.py">https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1_east_west.py</a> </p>
-<hr/>
-<p><a href="https://mde.tw/reeborg">https://mde.tw/reeborg</a></p>
-<p><a href="https://github.com/mdecycu/cs101">https://github.com/mdecycu/cs101</a></p>
-<p><a href="https://reeborg.ca/docs/en/python/index.html">https://reeborg.ca/docs/en/python/index.html</a></p>
-<p><a href="https://aroberge.github.io/reeborg-api/">https://aroberge.github.io/reeborg-api/</a></p>
-<p>if using local static port 9442:</p>
-<p style="padding-left: 30px;"><a href="https://127.0.0.1:8442/reeborg/?lang=en&amp;mode=python&amp;menu=%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Freeborg%2Fpython%2Fharvest1.py">Reeborg</a></p>
-<p>For Github Pages:</p>
-<p style="padding-left: 30px;"><a href="https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Freeborg%2Fpython%2Fharvest1.py">Reeborg</a></p>
+<h1>歡迎歡迎</h1>
+<p>可攜程式套件:<a href="http://229.cycu.org/portable_2026.7z">portable_2026.7z</a> </p>
+<p>個人github:<a href="https://github.com/LanChienEn/w11">https://github.com/LanChienEn/w11</a></p>
+<p style="padding-left: 60px;"></p>
 <p></p>
-<h2>ex1</h2>
-<p><a href="https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py">https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py</a> 是已知的機器人採收紅蘿蔔的程式，經由以下與 Copilot 的對話，希望透過 Python Class 的編寫解決特定範圍農作物採收的程式。</p>
-<p>問句:</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">以下是 Reeborg 一個用來採收紅蘿蔔的程式, 目前位於 (3,3) 到 (8,8) 的區域中各座標點, 各有一個紅羅蔔等待採收, 現在想要建立一個 harvest() class, 可以利用 (3,3), (8,8)作為標定有農作物必須採收的兩個區域對角點座標, 而程式可以利用此一 harvest 類別生成案例完成採收的任務: def turn(int):
-    for i in range(int):
-        turn_left()
-        
-def new_move(int):
-    for i in range(int):
-        move()
-        
-def harvest_one_row():
-    while object_here():
-        take()
-    else:
-        move()
-# move to the field
-new_move(2)
-turn_left()
-new_move(2)
-
-for i in range(3):
-    while is_facing_north():
-        for i in range(6):
-            harvest_one_row()
-        for i in range(2):
-            turn(3)
-            move() 
-    else:
-        for i in range(6):
-            harvest_one_row()
-        for i in range(2):
-            turn_left()
-            move()</pre>
-<p>AI 回答: <a href="https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1_class_ex1.py">https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1_class_ex1.py</a> </p>
-<p>進一步要求:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">請在類別中加上一個採收方向的參數, 內建變數是 horizontal 採收, 也就是由西邊往東邊的水平方向進行採收, 但若該方向變數設為 vertical 則會由南邊往北的所謂垂直方向進行採收</pre>
-<p>AI 回應: <a href="https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1_class_ex2.py">https://mde.tw/cp2025/reeborg?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1_class_ex2.py </a> </p>
-<p>延伸到採收 harvest2 農田: <a href="https://mde.tw/cp2025/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest2.json&amp;editor=python/harvest1_class_ex1.py">https://mde.tw/cp2025/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest2.json&amp;editor=python/harvest1_class_ex1.py</a> </p>
-<p>但卻沒能套用到 harvest3 農田: <a href="https://mde.tw/cp2025/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest3.json&amp;editor=python/harvest1_class_ex1.py">https://mde.tw/cp2025/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest3.json&amp;editor=python/harvest1_class_ex1.py</a> </p>
-<p>而必須要在每一個座標點留下或放入一個紅蘿蔔: <a href="https://mde.tw/cp2025/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest3.json&amp;editor=python/harvest1_class_ex3.py">https://mde.tw/cp2025/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest3.json&amp;editor=python/harvest1_class_ex3.py </a> </p>
-<h2>Otto_ninja</h2>
-<p><a href="https://www.printables.com/model/231580-otto-ninja-starter-robot/files">https://www.printables.com/model/231580-otto-ninja-starter-robot/files</a> </p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/NDIwhuxQPN8?si=ED_FAObUkAVFT5L-" title="YouTube video player" width="560"></iframe></p>
 <h1>Brython</h1>
 <p><button id="add1to100">1 add to 100</button><button id="robot1">機器人巡邏</button><button id="free_walk">自由行</button></p>
 <!-- 導入 brython 程式庫 -->
@@ -704,4 +646,46 @@ pyodide.runPython(code);
 </pre>
 <p><a href="https://mde.tw/cp2025/content/Pyodide.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/3ed6869dcd7312254513ca507de17945e15a9b6f/box_max_volume_short.py">Volume_max_pyodide_de_short.py</a></p>
 <p><a href="https://mde.tw/cp2025/content/Pyodide.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/3ed6869dcd7312254513ca507de17945e15a9b6f/box_volume_max_pyodide_de.py">Volume_max_pyodide_de.py</a></p>
+<p></p>
+<h1>w12</h1>
+<h2>國旗旋轉</h2>
+<p># 畫中華民國國旗，並展示 90 度與 45 度順時針旋轉<br/># 導入 doc<br/>from browser import document as doc<br/># 以下將利用 html 產生所需的繪圖畫布<br/>from browser import html<br/># 利用 math 函式庫執行三角函數運算<br/>import math</p>
+<p># --- 畫布與環境設定 ---</p>
+<p># 定義畫布尺寸<br/>FLAG_W = 600<br/>FLAG_H = 400<br/># 旋轉中心點<br/>CENTER_X = FLAG_W / 2<br/>CENTER_Y = FLAG_H / 2</p>
+<p># 將畫布添加到 id 為 brython_div1 的 HTML 元素中<br/>brython_div = doc["brython_div1"]</p>
+<p># 創建標籤和畫布<br/>brython_div &lt;= html.H3("原始國旗 (600x400)")<br/>canvas_orig = html.CANVAS(width = FLAG_W, height = FLAG_H, id = "flag_orig", style = {"border": "1px solid #ccc"})<br/>brython_div &lt;= canvas_orig</p>
+<p>brython_div &lt;= html.H3("順時針旋轉 90 度")<br/>canvas_90 = html.CANVAS(width = FLAG_W, height = FLAG_H, id = "flag_90", style = {"border": "1px solid #ccc"})<br/>brython_div &lt;= canvas_90</p>
+<p>brython_div &lt;= html.H3("順時針旋轉 45 度")<br/>canvas_45 = html.CANVAS(width = FLAG_W, height = FLAG_H, id = "flag_45", style = {"border": "1px solid #ccc"})<br/>brython_div &lt;= canvas_45</p>
+<p># --- 核心繪圖函數 (國旗內容) ---<br/>def draw_flag_content(ctx):<br/> """繪製未旋轉狀態的國旗內容，所有座標都是基於 (0, 0) 起點"""<br/> flag_w = FLAG_W<br/> flag_h = FLAG_H<br/> <br/> # 青天白日圖案的中心座標 (位於左上四分之一處)<br/> circle_x = flag_w/4<br/> circle_y = flag_h/4<br/> star_radius = flag_w/8 # 白日光芒半徑</p>
+<p># 1. 滿地紅 (Red Earth)<br/> ctx.fillStyle='rgb(255, 0, 0)'<br/> ctx.fillRect(0,0,flag_w,flag_h)</p>
+<p># 2. 青天 (Blue Sky)<br/> ctx.fillStyle='rgb(0, 0, 150)'<br/> ctx.fillRect(0,0,flag_w/2,flag_h/2)</p>
+<p># 3. 十二道光芒白日 (White Sun with Twelve Rays) - 採用原程式碼邏輯<br/> ctx.beginPath()<br/> angle = 0<br/> for i in range(24):<br/> # 採用原始程式碼中不常見的角度步進，確保旋轉前後形狀一致<br/> angle += 5*math.pi*2/12 <br/> toX = circle_x + math.cos(angle)*star_radius<br/> toY = circle_y + math.sin(angle)*star_radius<br/> if (i):<br/> ctx.lineTo(toX, toY)<br/> else:<br/> ctx.moveTo(toX, toY)<br/> ctx.closePath()<br/> ctx.fillStyle = '#fff'<br/> ctx.fill()</p>
+<p># 4. 白日:藍圈 (Blue Ring)<br/> ctx.beginPath()<br/> # 原始半徑: flag_w * 17 / 240<br/> ctx.arc(circle_x, circle_y, flag_w*17/240, 0, math.pi*2, True)<br/> ctx.closePath()<br/> ctx.fillStyle = 'rgb(0, 0, 149)'<br/> ctx.fill()</p>
+<p># 5. 白日:白心 (White Center)<br/> ctx.beginPath()<br/> # 原始半徑: flag_w / 16<br/> ctx.arc(circle_x, circle_y, flag_w/16, 0, math.pi*2, True)<br/> ctx.closePath()<br/> ctx.fillStyle = '#fff'<br/> ctx.fill()</p>
+<p># --- 繪製函數：原始國旗 ---<br/>def draw_original_flag():<br/> ctx = doc["flag_orig"].getContext("2d")<br/> draw_flag_content(ctx)</p>
+<p># --- 繪製函數：順時針旋轉 90 度 ---<br/>def draw_90_degree_flag():<br/> ctx = doc["flag_90"].getContext("2d")<br/> <br/> # 1. 儲存當前狀態<br/> ctx.save()<br/> <br/> # 2. 平移原點到畫布中心 (600/2, 400/2) = (300, 200)<br/> ctx.translate(CENTER_X, CENTER_Y)<br/> <br/> # 3. 旋轉 90 度 (π/2) 順時針<br/> ctx.rotate(math.pi / 2)<br/> <br/> # 4. 將原點平移回去，以便國旗內容以 (0, 0) 為起點繪製<br/> ctx.translate(-CENTER_X, -CENTER_Y)<br/> <br/> # 5. 繪製國旗內容<br/> draw_flag_content(ctx)<br/> <br/> # 6. 恢復狀態<br/> ctx.restore()</p>
+<p># --- 繪製函數：順時針旋轉 45 度 ---<br/>def draw_45_degree_flag():<br/> ctx = doc["flag_45"].getContext("2d")<br/> <br/> # 1. 儲存當前狀態<br/> ctx.save()<br/> <br/> # 2. 平移原點到畫布中心<br/> ctx.translate(CENTER_X, CENTER_Y)<br/> <br/> # 3. 旋轉 45 度 (π/4) 順時針<br/> ctx.rotate(math.pi / 4)<br/> <br/> # 4. 將原點平移回去<br/> ctx.translate(-CENTER_X, -CENTER_Y)<br/> <br/> # 5. 繪製國旗內容<br/> draw_flag_content(ctx)<br/> <br/> # 6. 恢復狀態<br/> ctx.restore()</p>
+<p># --- 執行繪圖 ---<br/>draw_original_flag()<br/>draw_90_degree_flag()<br/>draw_45_degree_flag()</p>
+<h2>機器人七段程式碼</h2>
+<p></p>
+<p>#請修正以下程式讓機器人可以走出七段顯示器格式的數字<br/>from robot_lib import World as BaseWorld, AnimatedRobot as BaseRobot, timer, CELL_SIZE</p>
+<p># --- 1. 定義世界（加入細格） ---<br/>class MyWorld(BaseWorld):<br/> def __init__(self, width=10, height=10, sub_cell=5):<br/> super().__init__(width, height)<br/> self.sub_cell = sub_cell<br/> self.sub_size = CELL_SIZE // sub_cell<br/> self._draw_fine_grid()</p>
+<p>def _draw_fine_grid(self):<br/> ctx = self.layers["grid"].getContext("2d")<br/> ctx.strokeStyle = "#e0e0e0"<br/> ctx.lineWidth = 0.5<br/> # 畫垂直細線<br/> for i in range(self.width * self.sub_cell + 1):<br/> x = i * self.sub_size<br/> ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, self.height * CELL_SIZE); ctx.stroke()<br/> # 畫水平細線<br/> for j in range(self.height * self.sub_cell + 1):<br/> y = j * self.sub_size<br/> ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(self.width * CELL_SIZE, y); ctx.stroke()</p>
+<p># 細格座標轉換為像素座標<br/> def sub_to_px(self, sub_x, sub_y):<br/> big_x = sub_x // self.sub_cell<br/> big_y = sub_y // self.sub_cell<br/> offset_x = (sub_x % self.sub_cell) * self.sub_size<br/> <br/> # 修正點 1: 反轉細格內 Y 偏移量 (oy)，使 sub_y 越大 (往下)，py 越大 (螢幕上往下)。<br/> # 這確保了我們將 (sub_x, sub_y) 視為 Y 軸向下增加的網格座標。<br/> sub_y_offset = sub_y % self.sub_cell<br/> offset_y = (self.sub_cell - 1 - sub_y_offset) * self.sub_size<br/> <br/> px = big_x * CELL_SIZE + offset_x + self.sub_size // 2<br/> <br/> # BaseWorld 的 Y 軸是從下往上。<br/> # 總像素 Y 座標 (py) 仍然需要反轉 big_y，以匹配螢幕座標（Y 軸向下）。<br/> py = (self.height - 1 - big_y) * CELL_SIZE + offset_y + self.sub_size // 2<br/> return px, py</p>
+<p># 在細格座標上畫線<br/> def draw_line(self, x1, y1, x2, y2):<br/> ctx = self.layers["objects"].getContext("2d")<br/> ctx.strokeStyle = "#d33"<br/> ctx.lineWidth = 9<br/> ctx.lineCap = "round"<br/> ctx.beginPath()<br/> ctx.moveTo(*self.sub_to_px(x1, y1))<br/> ctx.lineTo(*self.sub_to_px(x2, y2))<br/> ctx.stroke()</p>
+<p># --- 2. 定義機器人（以細格移動） ---<br/>class MyRobot(BaseRobot):<br/> def __init__(self, world, start_big_x=1, start_big_y=1):<br/> super().__init__(world, start_big_x, start_big_y)<br/> # 初始位置轉換為細格中心<br/> self.sub_x = start_big_x * world.sub_cell + world.sub_cell // 2<br/> self.sub_y = start_big_y * world.sub_cell + world.sub_cell // 2<br/> self.robot_size = world.sub_size * 1.8</p>
+<p># 重新繪製機器人（使用細格座標）<br/> def _draw_robot(self):<br/> self.robot_ctx.clearRect(0, 0, self.world.width * CELL_SIZE, self.world.height * CELL_SIZE)<br/> img = self.images[self.facing]<br/> px, py = self.world.sub_to_px(self.sub_x, self.sub_y)<br/> s = self.robot_size<br/> if img.complete:<br/> self.robot_ctx.drawImage(img, px - s//2, py - s//2, s, s)</p>
+<p># 瞬間移動（不畫線）<br/> def teleport_to(self, tx, ty):<br/> def action(done):<br/> self.sub_x, self.sub_y = tx, ty<br/> self._draw_robot()<br/> timer.set_timeout(done, 10)<br/> self.queue.append(action)<br/> self._run_queue()</p>
+<p># 移動 + 畫線（最核心）<br/> def move_to(self, tx, ty, draw_trace=True):<br/> def action(done):<br/> def step():<br/> if self.sub_x == tx and self.sub_y == ty:<br/> done(); return<br/> prev_x, prev_y = self.sub_x, self.sub_y</p>
+<p># 計算方向並轉向 (維持原始程式的邏輯，因其主要修正點不在這裡)<br/> dx = tx - self.sub_x<br/> dy = ty - self.sub_y<br/> if dx &gt; 0: target = "E"<br/> elif dx &lt; 0: target = "W"<br/> elif dy &gt; 0: target = "N"<br/> else: target = "S"</p>
+<p># 同步轉向（安全版）<br/> while self.facing != target:<br/> idx = self.facing_order.index(self.facing)<br/> self.facing = self.facing_order[(idx + 1) % 4]</p>
+<p># 移動一步<br/> self.sub_x += 1 if dx &gt; 0 else (-1 if dx &lt; 0 else 0)<br/> self.sub_y += 1 if dy &gt; 0 else (-1 if dy &lt; 0 else 0)</p>
+<p>if draw_trace:<br/> self.world.draw_line(prev_x, prev_y, self.sub_x, self.sub_y)<br/> self._draw_robot()<br/> # 調整速度，讓線條更平滑<br/> timer.set_timeout(step, 40)<br/> step()<br/> self.queue.append(action)<br/> self._run_queue()</p>
+<p># --- 3. 七段顯示器定義 ---<br/>SEGMENTS = {<br/> 0:[1,1,1,1,1,1,0], 1:[0,1,1,0,0,0,0], 2:[1,1,0,1,1,0,1],<br/> 3:[1,1,1,1,0,0,1], 4:[0,1,1,0,0,1,1], 5:[1,0,1,1,0,1,1],<br/> 6:[1,0,1,1,1,1,1], 7:[1,1,1,0,0,0,0], 8:[1,1,1,1,1,1,1],<br/> 9:[1,1,1,1,0,1,1]<br/>}</p>
+<p># 每個線段的細格座標路徑（相對座標）<br/># 七段顯示器結構是相對座標，高度 7 細格 (0-6)，寬度 4 細格 (0-3)。<br/># 這裡定義的 PATHS 仍是 Y 軸向下增加 (Y=0 頂部, Y=6 底部)<br/>PATHS = [<br/> [(0,0),(1,0),(2,0),(3,0)], # A 上 (Y=0)<br/> [(3,0),(3,1),(3,2),(3,3)], # B 右上<br/> [(3,3),(3,4),(3,5),(3,6)], # C 右下<br/> [(3,6),(2,6),(1,6),(0,6)], # D 下 (Y=6)<br/> [(0,6),(0,5),(0,4),(0,3)], # E 左下<br/> [(0,3),(0,2),(0,1),(0,0)], # F 左上<br/> [(0,3),(1,3),(2,3),(3,3)] # G 中 (Y=3)<br/>]</p>
+<p>def draw_digit(robot, digit, ox, oy):<br/> # 修正點 2: 引入七段顯示器的高度 (最大 Y 座標)<br/> SEGMENT_HEIGHT = 6<br/> if digit not in SEGMENTS: return<br/> <br/> for i, on in enumerate(SEGMENTS[digit]):<br/> if not on: continue<br/> path = PATHS[i]<br/> <br/> # 修正點 3: 進行 Y 座標反轉：y_fixed = oy + (SEGMENT_HEIGHT - relative_y)<br/> # 將 Y 軸向下增加的相對座標 (0-6) 轉換為 Y 軸向上增加的繪圖座標。<br/> <br/> # 初始位置<br/> start_x = ox + path[0][0]<br/> start_y = oy + (SEGMENT_HEIGHT - path[0][1]) # 關鍵反轉<br/> robot.teleport_to(start_x, start_y)<br/> <br/> for j in range(1, len(path)):<br/> tx = ox + path[j][0]<br/> ty = oy + (SEGMENT_HEIGHT - path[j][1]) # 關鍵反轉<br/> robot.move_to(tx, ty, draw_trace=True)</p>
+<p># ==================== 主程式：畫 0123456789 ====================<br/># 修正 World 寬度，以容納 10 個數字 (10 * 6 寬度 + 邊距)<br/>world = MyWorld(65, 10, sub_cell=5) <br/># 將機器人起始點設在細格 (0, 0) 附近<br/>robot = MyRobot(world, 0, 0)</p>
+<p># Y 軸偏移量 oy：<br/>START_Y_SUB_CELL = 1</p>
+<p>for i in range(10):<br/> # 每個數字的起始 X 細格座標 (每個數字寬度 4，間隔 2，共 6 寬度)<br/> start_x_offset = 1 + i * 6 <br/> draw_digit(robot, i, start_x_offset, START_Y_SUB_CELL)</p>
+<p>print("機器人正在寫字：0123456789 (已修正座標反轉問題)")</p>
 <p></p>
