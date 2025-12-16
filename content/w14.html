@@ -2,7 +2,7 @@
         <head>
         <title>cmsimde_site</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,30 +142,8 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">國旗旋轉 << <a href='國旗旋轉.html'>Previous</a> <a href='w14.html'>Next</a> >> w14<br /><h1>機器人七段程式碼</h1>
-<p></p>
-<p>#請修正以下程式讓機器人可以走出七段顯示器格式的數字<br/>from robot_lib import World as BaseWorld, AnimatedRobot as BaseRobot, timer, CELL_SIZE</p>
-<p># --- 1. 定義世界（加入細格） ---<br/>class MyWorld(BaseWorld):<br/> def __init__(self, width=10, height=10, sub_cell=5):<br/> super().__init__(width, height)<br/> self.sub_cell = sub_cell<br/> self.sub_size = CELL_SIZE // sub_cell<br/> self._draw_fine_grid()</p>
-<p>def _draw_fine_grid(self):<br/> ctx = self.layers["grid"].getContext("2d")<br/> ctx.strokeStyle = "#e0e0e0"<br/> ctx.lineWidth = 0.5<br/> # 畫垂直細線<br/> for i in range(self.width * self.sub_cell + 1):<br/> x = i * self.sub_size<br/> ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, self.height * CELL_SIZE); ctx.stroke()<br/> # 畫水平細線<br/> for j in range(self.height * self.sub_cell + 1):<br/> y = j * self.sub_size<br/> ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(self.width * CELL_SIZE, y); ctx.stroke()</p>
-<p># 細格座標轉換為像素座標<br/> def sub_to_px(self, sub_x, sub_y):<br/> big_x = sub_x // self.sub_cell<br/> big_y = sub_y // self.sub_cell<br/> offset_x = (sub_x % self.sub_cell) * self.sub_size<br/> <br/> # 修正點 1: 反轉細格內 Y 偏移量 (oy)，使 sub_y 越大 (往下)，py 越大 (螢幕上往下)。<br/> # 這確保了我們將 (sub_x, sub_y) 視為 Y 軸向下增加的網格座標。<br/> sub_y_offset = sub_y % self.sub_cell<br/> offset_y = (self.sub_cell - 1 - sub_y_offset) * self.sub_size<br/> <br/> px = big_x * CELL_SIZE + offset_x + self.sub_size // 2<br/> <br/> # BaseWorld 的 Y 軸是從下往上。<br/> # 總像素 Y 座標 (py) 仍然需要反轉 big_y，以匹配螢幕座標（Y 軸向下）。<br/> py = (self.height - 1 - big_y) * CELL_SIZE + offset_y + self.sub_size // 2<br/> return px, py</p>
-<p># 在細格座標上畫線<br/> def draw_line(self, x1, y1, x2, y2):<br/> ctx = self.layers["objects"].getContext("2d")<br/> ctx.strokeStyle = "#d33"<br/> ctx.lineWidth = 9<br/> ctx.lineCap = "round"<br/> ctx.beginPath()<br/> ctx.moveTo(*self.sub_to_px(x1, y1))<br/> ctx.lineTo(*self.sub_to_px(x2, y2))<br/> ctx.stroke()</p>
-<p># --- 2. 定義機器人（以細格移動） ---<br/>class MyRobot(BaseRobot):<br/> def __init__(self, world, start_big_x=1, start_big_y=1):<br/> super().__init__(world, start_big_x, start_big_y)<br/> # 初始位置轉換為細格中心<br/> self.sub_x = start_big_x * world.sub_cell + world.sub_cell // 2<br/> self.sub_y = start_big_y * world.sub_cell + world.sub_cell // 2<br/> self.robot_size = world.sub_size * 1.8</p>
-<p># 重新繪製機器人（使用細格座標）<br/> def _draw_robot(self):<br/> self.robot_ctx.clearRect(0, 0, self.world.width * CELL_SIZE, self.world.height * CELL_SIZE)<br/> img = self.images[self.facing]<br/> px, py = self.world.sub_to_px(self.sub_x, self.sub_y)<br/> s = self.robot_size<br/> if img.complete:<br/> self.robot_ctx.drawImage(img, px - s//2, py - s//2, s, s)</p>
-<p># 瞬間移動（不畫線）<br/> def teleport_to(self, tx, ty):<br/> def action(done):<br/> self.sub_x, self.sub_y = tx, ty<br/> self._draw_robot()<br/> timer.set_timeout(done, 10)<br/> self.queue.append(action)<br/> self._run_queue()</p>
-<p># 移動 + 畫線（最核心）<br/> def move_to(self, tx, ty, draw_trace=True):<br/> def action(done):<br/> def step():<br/> if self.sub_x == tx and self.sub_y == ty:<br/> done(); return<br/> prev_x, prev_y = self.sub_x, self.sub_y</p>
-<p># 計算方向並轉向 (維持原始程式的邏輯，因其主要修正點不在這裡)<br/> dx = tx - self.sub_x<br/> dy = ty - self.sub_y<br/> if dx &gt; 0: target = "E"<br/> elif dx &lt; 0: target = "W"<br/> elif dy &gt; 0: target = "N"<br/> else: target = "S"</p>
-<p># 同步轉向（安全版）<br/> while self.facing != target:<br/> idx = self.facing_order.index(self.facing)<br/> self.facing = self.facing_order[(idx + 1) % 4]</p>
-<p># 移動一步<br/> self.sub_x += 1 if dx &gt; 0 else (-1 if dx &lt; 0 else 0)<br/> self.sub_y += 1 if dy &gt; 0 else (-1 if dy &lt; 0 else 0)</p>
-<p>if draw_trace:<br/> self.world.draw_line(prev_x, prev_y, self.sub_x, self.sub_y)<br/> self._draw_robot()<br/> # 調整速度，讓線條更平滑<br/> timer.set_timeout(step, 40)<br/> step()<br/> self.queue.append(action)<br/> self._run_queue()</p>
-<p># --- 3. 七段顯示器定義 ---<br/>SEGMENTS = {<br/> 0:[1,1,1,1,1,1,0], 1:[0,1,1,0,0,0,0], 2:[1,1,0,1,1,0,1],<br/> 3:[1,1,1,1,0,0,1], 4:[0,1,1,0,0,1,1], 5:[1,0,1,1,0,1,1],<br/> 6:[1,0,1,1,1,1,1], 7:[1,1,1,0,0,0,0], 8:[1,1,1,1,1,1,1],<br/> 9:[1,1,1,1,0,1,1]<br/>}</p>
-<p># 每個線段的細格座標路徑（相對座標）<br/># 七段顯示器結構是相對座標，高度 7 細格 (0-6)，寬度 4 細格 (0-3)。<br/># 這裡定義的 PATHS 仍是 Y 軸向下增加 (Y=0 頂部, Y=6 底部)<br/>PATHS = [<br/> [(0,0),(1,0),(2,0),(3,0)], # A 上 (Y=0)<br/> [(3,0),(3,1),(3,2),(3,3)], # B 右上<br/> [(3,3),(3,4),(3,5),(3,6)], # C 右下<br/> [(3,6),(2,6),(1,6),(0,6)], # D 下 (Y=6)<br/> [(0,6),(0,5),(0,4),(0,3)], # E 左下<br/> [(0,3),(0,2),(0,1),(0,0)], # F 左上<br/> [(0,3),(1,3),(2,3),(3,3)] # G 中 (Y=3)<br/>]</p>
-<p>def draw_digit(robot, digit, ox, oy):<br/> # 修正點 2: 引入七段顯示器的高度 (最大 Y 座標)<br/> SEGMENT_HEIGHT = 6<br/> if digit not in SEGMENTS: return<br/> <br/> for i, on in enumerate(SEGMENTS[digit]):<br/> if not on: continue<br/> path = PATHS[i]<br/> <br/> # 修正點 3: 進行 Y 座標反轉：y_fixed = oy + (SEGMENT_HEIGHT - relative_y)<br/> # 將 Y 軸向下增加的相對座標 (0-6) 轉換為 Y 軸向上增加的繪圖座標。<br/> <br/> # 初始位置<br/> start_x = ox + path[0][0]<br/> start_y = oy + (SEGMENT_HEIGHT - path[0][1]) # 關鍵反轉<br/> robot.teleport_to(start_x, start_y)<br/> <br/> for j in range(1, len(path)):<br/> tx = ox + path[j][0]<br/> ty = oy + (SEGMENT_HEIGHT - path[j][1]) # 關鍵反轉<br/> robot.move_to(tx, ty, draw_trace=True)</p>
-<p># ==================== 主程式：畫 0123456789 ====================<br/># 修正 World 寬度，以容納 10 個數字 (10 * 6 寬度 + 邊距)<br/>world = MyWorld(65, 10, sub_cell=5) <br/># 將機器人起始點設在細格 (0, 0) 附近<br/>robot = MyRobot(world, 0, 0)</p>
-<p># Y 軸偏移量 oy：<br/>START_Y_SUB_CELL = 1</p>
-<p>for i in range(10):<br/> # 每個數字的起始 X 細格座標 (每個數字寬度 4，間隔 2，共 6 寬度)<br/> start_x_offset = 1 + i * 6 <br/> draw_digit(robot, i, start_x_offset, START_Y_SUB_CELL)</p>
-<p>print("機器人正在寫字：0123456789 (已修正座標反轉問題)")</p>
-<p></p>
-<br />國旗旋轉 << <a href='國旗旋轉.html'>Previous</a> <a href='w14.html'>Next</a> >> w14</div>
+    <div id="tipue_search_content">機器人七段程式碼 << <a href='機器人七段程式碼.html'>Previous</a> <a href='操作一、操作二.html'>Next</a> >> 操作一、操作二<br /><h1>w14</h1>
+<br />機器人七段程式碼 << <a href='機器人七段程式碼.html'>Previous</a> <a href='操作一、操作二.html'>Next</a> >> 操作一、操作二</div>
         
     <!-- footer -->
       <div class="container">
