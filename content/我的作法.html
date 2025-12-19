@@ -2,6 +2,7 @@
         <head>
         <title>cmsimde_site</title>
         <meta charset="utf-8">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,14 +142,45 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='Brython指令區.html'>Next</a> >> Brython指令區<br /><h1>首頁大廳</h1>
-<pre aria-label="譯文：login" class="tw-data-text tw-text-large tw-ta" data-placeholder="翻譯" data-ved="2ahUKEwjE2dnJjcKRAxXg1DQHHUbaE4wQ3ewLegQIDhAW" id="tw-target-text" role="text" tabindex="-1"><span class="Y2IQFc" lang="en">個人網頁Login</span>密碼:admin</pre>
-<p>可攜程式:<a href="http://229.cycu.org/portable_2026.7z">portable_2026.7z</a> </p>
-<p>個人github倉儲:<a href="https://github.com/LanChienEn/w11">https://github.com/LanChienEn/w11</a></p>
-<p>團體<span>github</span></p>
-<p style="padding-left: 60px;"></p>
-<p></p>
-<br /> <a href='Brython指令區.html'>Next</a> >> Brython指令區</div>
+    <div id="tipue_search_content">一般作法 << <a href='一般作法.html'>Previous</a> <a href='w12.html'>Next</a> >> w12<br /><h1>我的作法</h1>
+<p>1.最初:<span style="background-color: #ffcc99;">鏡射</span>自己的<span style="background-color: #ffcc99;">個人倉儲網站</span>的個人網站。</p>
+<p>2.一開始先<span style="background-color: #ffcc99;">同步</span>自己的個人倉儲<span style="background-color: #ffcc99;">到團體</span></p>
+<p>以下是詢問AI的過程:</p>
+<p><strong>我:</strong></p>
+<p>我現在有一個個人github倉儲，我該怎麼樣把我這一個倉儲完全複製(包括修改歷程)到另一個分組倉儲?</p>
+<p><strong>AI:</strong></p>
+<p>要完整複製一個 GitHub 倉儲（包含所有 commit / branch / tag 的歷史）到另一個分組倉儲，最正確、乾淨、不會漏歷史的方法是用 mirror（鏡像）推送。</p>
+<p>下面我分成「✅推薦做法」與「⚠️常見錯誤」來說。</p>
+<p>✅ 推薦做法：git clone --mirror（完整保留歷史）<br/>🎯 適用情境</p>
+<p>你有 個人 repo想把它 100% 原封不動複製到 分組 repo</p>
+<p>包含：所有 commit</p>
+<p>所有 branch</p>
+<p>所有 tag</p>
+<p>所有歷史</p>
+<p>Step 1️⃣ 複製「個人倉儲」為鏡像<br/>git clone --mirror https://github.com/你的帳號/個人倉儲.git</p>
+<p><br/>這會產生一個資料夾，例如：</p>
+<p>個人倉儲.git/</p>
+<p><br/>⚠️ 注意：這不是一般的 clone，不要進去改檔案</p>
+<p>Step 2️⃣ 進入鏡像倉儲資料夾<br/>cd 個人倉儲.git</p>
+<p>Step 3️⃣ 設定新的 remote（分組倉儲）<br/>git remote set-url --push origin https://github.com/分組帳號/分組倉儲.git</p>
+<p><br/>（你可以用 git remote -v 確認）</p>
+<p>Step 4️⃣ 推送「所有歷史」到分組倉儲<br/>git push --mirror</p>
+<p><br/>🎉 完成！</p>
+<p>分組倉儲現在會有：</p>
+<p>完整 commit 紀錄</p>
+<p>所有分支</p>
+<p>所有 tag<br/>→ 跟你個人倉儲一模一樣</p>
+<p>🧪 確認是否成功（可選）</p>
+<p>到 GitHub 分組倉儲頁面確認：</p>
+<p>Commit 歷史有沒有完整</p>
+<p>分支是否齊全</p>
+<p>⚠️ 常見錯誤（不推薦）<br/>❌ 只做這樣：<br/>git remote add origin ...<br/>git push</p>
+<p><br/>👉 只會推目前 branch<br/>👉 歷史可能不完整<br/>👉 tag / 其他 branch 會消失</p>
+<p>🧠 如果你「之後要繼續在分組 repo 開發」<br/>做完 mirror 後，重新正常 clone 一次分組 repo：<br/>git clone https://github.com/分組帳號/分組倉儲.git</p>
+<p><br/>然後之後都用這個 repo 開發即可。</p>
+<p>🆘 特殊情況提醒<br/>情況 解法<br/>分組 repo 已經有內容 需要先刪 repo 或確定你要覆蓋<br/>沒有 push 權限 要請組長把你加成 collaborator<br/><br/></p>
+<p>3.後來...</p>
+<br />一般作法 << <a href='一般作法.html'>Previous</a> <a href='w12.html'>Next</a> >> w12</div>
         
     <!-- footer -->
       <div class="container">
