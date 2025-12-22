@@ -2,7 +2,7 @@
 <pre aria-label="譯文：login" class="tw-data-text tw-text-large tw-ta" data-placeholder="翻譯" data-ved="2ahUKEwjE2dnJjcKRAxXg1DQHHUbaE4wQ3ewLegQIDhAW" id="tw-target-text" role="text" tabindex="-1"><span class="Y2IQFc" lang="en">個人網頁Login</span>密碼:admin</pre>
 <p>可攜程式:<a href="http://229.cycu.org/portable_2026.7z">portable_2026.7z</a> </p>
 <p>個人github倉儲:<a href="https://github.com/LanChienEn/w11">https://github.com/LanChienEn/w11</a></p>
-<p>團體<span>github</span></p>
+<p>團體<span>githubg倉儲:<a href="https://github.com/mdecp2025/1a-ag2">https://github.com/mdecp2025/1a-ag2</a></span></p>
 <p style="padding-left: 60px;"></p>
 <p></p>
 <h1>Brython指令區</h1>
@@ -693,7 +693,70 @@ pyodide.runPython(code);
 <p>🧠 如果你「之後要繼續在分組 repo 開發」<br/>做完 mirror 後，重新正常 clone 一次分組 repo：<br/>git clone https://github.com/分組帳號/分組倉儲.git</p>
 <p><br/>然後之後都用這個 repo 開發即可。</p>
 <p>🆘 特殊情況提醒<br/>情況 解法<br/>分組 repo 已經有內容 需要先刪 repo 或確定你要覆蓋<br/>沒有 push 權限 要請組長把你加成 collaborator<br/><br/></p>
-<p>3.後來...</p>
+<p><strong>我:</strong></p>
+<p>我有在自己個人倉儲上傳新的內容，但沒有跟團體倉儲同步上傳新的內容。我該怎麼一起同步到團體倉儲裡?讓我個人的倉儲更新的內容可以跟團體倉儲同步。</p>
+<p><strong>AI:</strong></p>
+<p>這個問題問得非常好，而且很常見 👍<br/>現在你的狀況是「兩個倉儲已經分家」，我幫你用最安全、不會被老師誤會的方式處理。</p>
+<p>🎯 你現在的狀態（重點釐清）</p>
+<p>✅ 個人倉儲：有「新的 commit」</p>
+<p>✅ Classroom 團體倉儲：還停在舊狀態</p>
+<p>❌ 目前 兩邊沒有自動同步</p>
+<p>👉 Git 不會自動同步兩個 repo<br/>👉 你必須「選一個作為主來源」</p>
+<p>✅ 最推薦、最安全的做法（助教／老師也認可）<br/>⭐ 原則（請一定照這個）</p>
+<p>之後「只用團體倉儲開發」<br/>個人倉儲只當「舊來源」，把更新補進來一次即可</p>
+<p>🟢 做法 A（推薦）：把「個人倉儲的更新」合併到團體倉儲<br/>🎯 適合你現在的情況</p>
+<p>個人倉儲有新 commit</p>
+<p>團體倉儲是交作業用（最終版）</p>
+<p>🧭 實際操作（一步一步）<br/>① 進入 團體倉儲資料夾<br/>cd Y:\1a-ag2</p>
+<p>② 加入「個人倉儲」作為另一個 remote<br/>git remote add personal https://github.com/LanChienEn/w11.git</p>
+<p><br/>確認一下：</p>
+<p>git remote -v</p>
+<p><br/>你會看到：</p>
+<p>origin → Classroom</p>
+<p>personal → 個人倉儲</p>
+<p>③ 抓取個人倉儲的更新（不會改你本地檔案）<br/>git fetch personal</p>
+<p>④ 把個人倉儲的 main（或 master）合併進來</p>
+<p>⚠️ 請選你實際使用的分支（通常是 main）</p>
+<p>git merge personal/main</p>
+<p><br/>如果你是 master：</p>
+<p>git merge personal/master</p>
+<p>⑤ 推送到 Classroom 團體倉儲<br/>git push</p>
+<p><br/>🎉 完成同步</p>
+<p>🧠 合併後會發生什麼？</p>
+<p>✅ 個人倉儲的新 commit 完整保留</p>
+<p>✅ commit 作者、時間都正確</p>
+<p>✅ Classroom repo 出現「正常 merge 紀錄」</p>
+<p>✅ 老師看到的是「合理開發流程」</p>
+<p>⚠️ 如果出現衝突（conflict）</p>
+<p>Git 會提示哪些檔案衝突：</p>
+<p>git status</p>
+<p><br/>你只要：</p>
+<p>打開衝突檔案</p>
+<p>保留你要的版本</p>
+<p>存檔後：</p>
+<p>git add .<br/>git commit<br/>git push</p>
+<p><br/>（如果你要，我可以教你「怎麼看衝突標記」）</p>
+<p>🚫 不推薦的做法（但說給你知道）<br/>❌ 再次用 git push --mirror</p>
+<p>會 覆蓋 Classroom</p>
+<p>可能影響同組同學</p>
+<p>老師會覺得歷史怪怪的</p>
+<p>👉 現在不要再用 mirror</p>
+<p>🟡 什麼時候才可以再 mirror？</p>
+<p>只有一個人</p>
+<p>團體 repo 完全沒人動</p>
+<p>老師允許覆蓋</p>
+<p>否則 ❌</p>
+<p>🏁 以後的正確習慣（很重要）</p>
+<p>從現在開始：</p>
+<p>🟢 只在 1a-ag2 寫程式</p>
+<p>🟢 push 的對象只有 Classroom</p>
+<p>❌ 不要再從個人 repo 開發</p>
+<p>如果你想保留個人 repo：</p>
+<p>git push personal main</p>
+<p><br/>（反方向同步，用來備份）</p>
+<p>✅ 一句話總結（你可以記這句）</p>
+<p>把「個人 repo」當來源，用 fetch + merge 合併到「Classroom repo」一次，之後只用 Classroom。</p>
+<p></p>
 <h1>w12</h1>
 <h2><span style="background-color: #ffff00;">國旗旋轉</span></h2>
 <p># 畫中華民國國旗，並展示 90 度與 45 度順時針旋轉<br/># 導入 doc<br/>from browser import document as doc<br/># 以下將利用 html 產生所需的繪圖畫布<br/>from browser import html<br/># 利用 math 函式庫執行三角函數運算<br/>import math</p>

@@ -144,8 +144,8 @@ img.add_border {
         </header>
     <div id="tipue_search_content">第二個程式的改良 << <a href='第二個程式的改良.html'>Previous</a> <br /><h1>我所添加的程式新功能</h1>
 <p><strong>我把程式改成：</strong></p>
-<p><strong>手機可玩</strong> → 除了 click 也支援 touchstart 事件</p>
-<p><strong>圓點顏色固定</strong> → 移除隨機顏色，設定固定顏色（例如 #ff4500）</p>
+<p><span style="background-color: #ffff00;"><strong>手機可玩</strong></span> → 除了 click 也支援 touchstart 事件</p>
+<p><strong>圓點<span style="background-color: #ffff00;">顏色固定</span></strong> → 移除隨機顏色，設定固定顏色（例如 #ff4500）</p>
 <p><br/>以下是我的程式碼:</p>
 <p># --- 遊戲核心邏輯 ---</p>
 <p>def move_target():<br/> """移動目標元素"""<br/> if not game_active:<br/> return<br/> <br/> max_x = game_area.clientWidth - 50<br/> max_y = game_area.clientHeight - 50<br/> min_y = 40</p>
