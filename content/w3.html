@@ -2,7 +2,7 @@
         <head>
         <title>cmsimde_site</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,8 +142,105 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w14 << <a href='w14.html'>Previous</a> <a href='如何建立團體github網站.html'>Next</a> >> 如何建立團體github網站<br /><h1>w11</h1>
-<br />w14 << <a href='w14.html'>Previous</a> <a href='如何建立團體github網站.html'>Next</a> >> 如何建立團體github網站</div>
+    <div id="tipue_search_content">學習心得報告主題 << <a href='學習心得報告主題.html'>Previous</a> <a href='w7.html'>Next</a> >> w7<br /><h1>w3</h1>
+<p><strong>什麼是 git, GitHub, gist 與 cmsimde? 如何使用這些工具？為什麼要使用這些工具？</strong></p>
+<p><span>為何Git 與 Github?</span></p>
+<p>使用 Git 與 GitHub 主要有以下幾個原因：</p>
+<ol>
+<li>版本控制: Git 是一套分散式的版本控制系統，能記錄每一個檔案的修改歷程。這樣就算不小心改壞了某一個版本的程式，也能隨時回復到以前的版本，而且在協同設計流程中，可以追蹤那一個使用者改了那些內容、什麼時候改的，可以快速釐清許多議題。</li>
+<li>團隊協作: 多個開發者可以同時對同一個專案進行開發，透過分支（branch）機制，各自開發新功能、修 bug，最後再合併（merge）到主分支，避免互相覆蓋程式碼。</li>
+<li>雲端備份與分享: GitHub 是基於 Git 的雲端代管平台，可以將本地的 Git 專案上傳到雲端，不怕資料遺失。也方便將程式碼公開或私下分享給其他人。</li>
+<li>問題追蹤與管理: GitHub 除了儲存程式碼，還提供 issue、pull request 等工具，有助於追蹤 bug、討論功能、審查程式碼，提高專案管理效率。</li>
+<li>開放原始碼與社群合作: 許多開放原始碼專案都放在 GitHub，任何人都能貢獻程式碼，促進社群協作與學習。</li>
+<li>總結：使用 Git 和 GitHub 可以讓程式開發更有組織、更安全、更容易協作與管理，也方便與他人分享、學習與成長。</li>
+</ol>
+<p><span>請舉實際的計算機程式開發案例，說明如何操作 Git 與 Github，以便取得程式開發流程的便利與優勢。</span></p>
+<p>Git 與 GitHub 操作案例說明</p>
+<h4>Git 與 GitHub 實際操作案例：多人開發 ToDo List 網站</h4>
+<div>
+<h4>1. 專案初始化與上傳</h4>
+<div>
+<h4><strong>步驟:</strong></h4>
+<ol>
+<li>在本機建立專案資料夾，初始化 Git：
+<pre><code>git init</code></pre>
+</li>
+<li>新增檔案（如<span> </span><code>index.html</code>、<code>app.js</code>），並提交第一個版本：
+<pre><code>git add .<br/>git commit -m "Initial commit"</code></pre>
+</li>
+<li>在 GitHub 建立新 repository，然後將本機專案推送到遠端：
+<pre><code>git remote add origin https://github.com/username/todo-app.git<br/>git push -u origin master</code></pre>
+</li>
+</ol>
+<p><strong>優勢:</strong>所有程式碼都有歷史紀錄，且安全備份於雲端。</p>
+</div>
+</div>
+<div>
+<h4>2. 分支開發新功能</h4>
+<div>
+<p><strong>情境:</strong>小明負責開發「新增待辦事項」功能。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>建立新分支：
+<pre><code>git checkout -b feature/add-todo-item</code></pre>
+</li>
+<li>實作功能並提交：
+<pre><code>git add .<br/>git commit -m "Add feature to create todo item"</code></pre>
+</li>
+<li>推送分支到 GitHub：
+<pre><code>git push origin feature/add-todo-item</code></pre>
+</li>
+</ol>
+<p><strong>優勢:</strong>各自分支開發，互不干擾，降低衝突風險。</p>
+</div>
+</div>
+<div>
+<h4>3. Pull Request（合併請求）與 Code Review</h4>
+<div class="step">
+<p><strong>情境:</strong>小明開發完成，欲合併新功能到主分支。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>在 GitHub 上建立 Pull Request，描述功能內容。</li>
+<li>其他團隊成員審查程式碼，提出建議或修正。</li>
+<li>經討論無誤後，管理員合併 PR。</li>
+</ol>
+<p><strong>優勢:</strong>強化程式品質與團隊溝通，每次合併都有討論紀錄。</p>
+</div>
+</div>
+<div>
+<h4>4. 處理 Bug 與 Issue 追蹤</h4>
+<div class="step">
+<p><strong>情境:</strong>使用者發現「無法刪除待辦事項」的 bug。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>在 GitHub issue 區提出 bug 報告。</li>
+<li>團隊分配成員修正，建立<span> </span><code>fix/delete-todo-bug</code><span> </span>分支。</li>
+<li>修正後提交、發 PR、review、合併。</li>
+</ol>
+<p><strong>優勢:</strong>所有 bug、功能需求有明確記錄，修正過程透明。</p>
+</div>
+</div>
+<div>
+<h4>5. 版本回溯與復原</h4>
+<div class="step">
+<p><strong>情境:</strong>新功能導致主分支出錯。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>透過 Git log 查找歷史版本：
+<pre><code>git log</code></pre>
+</li>
+<li>回復到上一個穩定版本：
+<pre><code>git checkout &lt;commit-id&gt;</code></pre>
+</li>
+</ol>
+<p><strong>優勢:</strong>不怕程式「改壞」，可隨時回復，輕鬆追蹤誰做了什麼修改。</p>
+</div>
+</div>
+<div>
+<h4>總結:</h4>
+<p>Git 與 GitHub 提供完整的版本控制、團隊協作、問題追蹤、程式碼審查與備份機制，讓開發流程更有條理，大幅提升開發效率與品質。不論團隊或個人開發，都能享有回溯、備份、管理等多重好處。</p>
+</div>
+<br />學習心得報告主題 << <a href='學習心得報告主題.html'>Previous</a> <a href='w7.html'>Next</a> >> w7</div>
         
     <!-- footer -->
       <div class="container">

@@ -1,304 +1,63 @@
-<h1>首頁大廳</h1>
-<pre aria-label="譯文：login" class="tw-data-text tw-text-large tw-ta" data-placeholder="翻譯" data-ved="2ahUKEwjE2dnJjcKRAxXg1DQHHUbaE4wQ3ewLegQIDhAW" id="tw-target-text" role="text" tabindex="-1"><span class="Y2IQFc" lang="en">個人網頁Login</span>密碼:admin</pre>
+<h1>首頁</h1>
+<pre aria-label="譯文：login" class="tw-data-text tw-text-large tw-ta" data-placeholder="翻譯" data-ved="2ahUKEwjE2dnJjcKRAxXg1DQHHUbaE4wQ3ewLegQIDhAW" id="tw-target-text" role="text" tabindex="-1"><span class="Y2IQFc" lang="en">Login</span>密碼:admin</pre>
 <p>可攜程式:<a href="http://229.cycu.org/portable_2026.7z">portable_2026.7z</a> </p>
-<p>個人github倉儲:<a href="https://github.com/LanChienEn/w11">https://github.com/LanChienEn/w11</a></p>
-<p>團體<span>githubg倉儲:<a href="https://github.com/mdecp2025/1a-ag2">https://github.com/mdecp2025/1a-ag2</a></span></p>
+<p>組長:籃健恩  <a href="https://github.com/LanChienEn/w11">https://github.com/LanChienEn/w11</a></p>
+<p>組員:黃育驊 <a class="Link--inTextBlock" href="https://qwe43157.github.io/41136123/">https://qwe43157.github.io/41136123/</a></p>
 <p style="padding-left: 60px;"></p>
 <p></p>
 <h1>Brython指令區</h1>
 <p><button id="add1to100">1 add to 100</button><button id="robot1">機器人巡邏</button><button id="free_walk">自由行</button></p>
-<!-- 導入 brython 程式庫 -->
-<p>
-<script src="/static/brython.js"></script>
-<script src="/static/brython_stdlib.js"></script>
-</p>
-<!-- 啟動 Brython -->
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p><!-- 導入 FileSaver 與 filereader --></p>
-<p>
-<script src="/static/ace/FileSaver.min.js" type="text/javascript"></script>
-<script src="/static/ace/filereader.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 ace --></p>
-<p>
-<script src="/static/ace/ace.js" type="text/javascript"></script>
-<script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
-<script src="/static/ace/mode-python3.js" type="text/javascript"></script>
-<script src="/static/ace/snippets/python.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
-<script src="/static/Cango-24v03-min.js"></script>
-<script src="/static/gearUtils-09.js"></script>
-<script src="/static/SVGpathUtils-6v03-min.js"></script>
-<script src="/static/sylvester.js"></script>
-<script src="/static/PrairieDraw.js"></script>
-</p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/javascript">
-function doSave(storage_id, filename){
-    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById(filename).value
-    saveAs(blob, filename+".py");
-}
-</script>
-</p>
-<p><!-- 累加程式開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run1():
-    # 利用 get 取下 src 變數值
-    try:
-        url = doc.query["src"]
-    except:
-        url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c3a6deaf717f8f2739a4b1392a5ab10936e9693a/from_1_add_to_10_1.py"
-    prog = open(url).read()
-
-    # 將程式載入編輯區
-    Ace1.editor.setValue(prog)
-    Ace1.editor.scrollToRow(0)
-    Ace1.editor.gotoLine(0)
-    # 直接執行程式
-    #ns = {'__name__':'__main__'}
-    #exec(prog, ns)
-    # 按下 run 按鈕
-    Ace1.run()
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run1'].bind('click', Ace1.run)
-doc['kw_show_console1'].bind('click', Ace1.show_console)
-doc['kw_clear_console1'].bind('click', Ace1.clear_console)
-doc['clear_bd1'].bind('click', clear_bd1)
-# 呼叫函式執行
-run1()
-</script>
-<!-- 累加程式結束 --> <!-- 機器人巡邏程式開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-
-robot1_url = "https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/b33c5fc2a0774f8c5d2b0e8c7c7908e58d73bb94/robot_1.py"
-
-# 從 gist 取得程式碼
-robot1_src = open(robot1_url).read()
-def robot1(ev):
-    Ace2.editor.setValue(robot1_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-
-# id 為 "robot1" 的按鈕點按時, 執行 robot1 方法
-doc["robot1"].bind('click', robot1)
-</script>
-<!-- 機器人巡邏程式結束 --></p>
-<!-- 機器人自由行程式開始 -->
-<p>
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-
-free_walk_url = "https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/9d55811467e411eb89f74171d8a586ae9f1a96aa/brython_robot_free_walk.py"
-
-# 從 gist 取得程式碼
-free_walk_src = open(free_walk_url).read()
-def free_walk(ev):
-    Ace2.editor.setValue(free_walk_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-
-# id 為 "free_walk" 的按鈕點按時, 執行 robot1 方法
-doc["free_walk"].bind('click', free_walk)
-</script>
-</p>
-<!-- 機器人自由行程式結束 -->
-<p><!-- add 1 to 100 開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-
-add1to100_url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c48e37714f055c3a0027cbfef59e442a6ef659b9/from_1_add_to_100_1.py"
-
-# 從 gist 取得程式碼
-add_src = open(add1to100_url).read()
-def add(ev):
-    Ace2.editor.setValue(add_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-
-# id 為 "add1to100" 的按鈕點按時, 執行 add 方法
-doc["add1to100"].bind('click', add)
-</script>
-</p>
-<p><!-- add 1 to 100 結束--></p>
-<!-- editor1 開始 -->
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
 <div id="kw_editor1" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
 <p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
 <p></p>
-<p><!-- 程式執行 ouput 區 --></p>
+<form><label>Filename:<span> </span><input id="kw_filename" placeholder="input file name" type="text"/>.py</label><span> </span><input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
+<p></p>
+<p></p>
+<p></p>
+<p><button id="kw_run1">Run</button><span> </span><button id="kw_show_console1">Output</button><span> </span><button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<p></p>
+<p></p>
+<p></p>
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
+<p></p>
 <div id="brython_div1"></div>
-<!-- editor1 結束 --><hr/><!-- ########################################## -->
+<hr/>
 <p>從 1 累加到 100 part2:</p>
 <p><button id="add1to100part2">1 add to 100</button><button id="cango_three_gears">cango_three_gears</button><button id="bsnake">BSnake</button><button id="aitetris">AI Tetris</button></p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src2"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/python3">
-from browser import document as doc
-import ace
-# 清除畫布
-def clear_bd2(ev):
-    bd = doc["brython_div2"]
-    bd.clear()
-Ace3 = ace.Editor(editor_id="kw_editor2", console_id="kw_console2", container_id="kw__container2", storage_id="kw_py_src2" )
-# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run2():
-    # 利用 get 取下 src 變數值
-    try:
-        url = doc.query["src2"]
-    except:
-        url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c3a6deaf717f8f2739a4b1392a5ab10936e9693a/from_1_add_to_10_1.py"
-    prog = open(url).read()
-
-    # 將程式載入編輯區
-    Ace3.editor.setValue(prog)
-    Ace3.editor.scrollToRow(0)
-    Ace3.editor.gotoLine(0)
-    # 直接執行程式
-    #ns = {'__name__':'__main__'}
-    #exec(prog, ns)
-    # 按下 run 按鈕
-    Ace3.run()
-
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run2'].bind('click', Ace3.run)
-doc['kw_show_console2'].bind('click', Ace3.show_console)
-doc['kw_clear_console2'].bind('click', Ace3.clear_console)
-doc['clear_bd2'].bind('click', clear_bd2)
-# 呼叫函式執行
-run2()
-</script>
-</p>
-<p><!-- add 1 to 100 part2 開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd2(ev):
-    bd = doc["brython_div2"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace4 = ace.Editor(editor_id="kw_editor2", console_id="kw_console2", container_id="kw__container2", storage_id="kw_py_src2" )
-
-# 透過 Ace4 以類別建立一個通用的 button2, 可以在多個案例中將 gist 程導入編輯區
-
-class button2:
-    def __init__(self, url):
-        self.url = url
-
-    # 記得加入 event 輸入變數
-    def do(self,ev):
-        Ace4.editor.setValue(open(self.url).read())
-        Ace4.editor.scrollToRow(0)
-        Ace4.editor.gotoLine(0)
-        Ace4.run()
-
-add1to100_url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c48e37714f055c3a0027cbfef59e442a6ef659b9/from_1_add_to_100_1.py"
-
-# 從 gist 取得程式碼
-add_src = open(add1to100_url).read()
-def add2(ev):
-    Ace4.editor.setValue(add_src)
-    Ace4.editor.scrollToRow(0)
-    Ace4.editor.gotoLine(0)
-    Ace4.run()
-
-# id 為 "add1to100part2" 的按鈕點按時, 執行 add 方法
-doc["add1to100part2"].bind('click', add2)
-# 以下為運用 button2 class 的通用 gist 程式導入區
-################################## cango_three_gears start
-cango_three_gears_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/cango_three_gears_brython_div2.py"
-cango_three_gears = button2(cango_three_gears_url)
-doc["cango_three_gears"].bind("click", cango_three_gears.do)
-################################## cango_three_gears end
-################################## bsnake start
-bsnake_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/kmol_snakey.py"
-bsnake = button2(bsnake_url)
-doc["bsnake"].bind("click", bsnake.do)
-################################## bsnake end
-################################## aitetris start
-aitetris_url = "https://gist.githubusercontent.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d/raw/f7a85d737d6723d5e34c526d5daee990ed92c32b/pygame_to_brython_tetris_ai.py"
-aitetris = button2(aitetris_url)
-doc["aitetris"].bind("click", aitetris.do)
-################################## aitetris end
-</script>
-</p>
-<p><!-- add 1 to 100 part2 結束--></p>
-<!-- editor2 開始 -->
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
 <div id="kw_editor2" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
 <p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run2">Run</button> <button id="kw_show_console2">Output</button> <button id="kw_clear_console2">清除輸出區</button><button id="clear_bd2">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
 <p></p>
-<p><!-- 程式執行 ouput 區 --></p>
+<form><label>Filename:<span> </span><input id="kw_filename2" placeholder="input file name" type="text"/>.py</label><span> </span><input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
+<p></p>
+<p></p>
+<p></p>
+<p><button id="kw_run2">Run</button><span> </span><button id="kw_show_console2">Output</button><span> </span><button id="kw_clear_console2">清除輸出區</button><button id="clear_bd2">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<p></p>
+<p></p>
+<p></p>
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
+<p></p>
 <div id="brython_div2"></div>
-<!-- editor2 結束 --><hr/>
+<hr/>
 <p></p>
 <h2>Brython</h2>
 <p><a href="https://mde.tw/cp2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/9d55811467e411eb89f74171d8a586ae9f1a96aa/brython_robot_free_walk.py">機器人自由行</a></p>
@@ -426,27 +185,16 @@ def on_key(e):
 draw_robot()</pre>
 <p>Optimization:</p>
 <p>題目:<br/>一位製造商想設計一個開口式的盒子，其底部為長方形，寬為 x、長為 y，且總表面積為 80 平方公分。 請問要使盒子的體積達到最大，應該選用哪些尺寸？</p>
-<p>直接利用 Python 以 <a href="https://en.wikipedia.org/wiki/Differential_evolution">Differential Evoluation</a> 運算: <a href="/downloads/de_volume_max.py">de_volume_max.py</a></p>
+<p>直接利用 Python 以<span> </span><a href="https://en.wikipedia.org/wiki/Differential_evolution">Differential Evoluation</a><span> </span>運算: <a href="/downloads/de_volume_max.py">de_volume_max.py</a></p>
 <p style="padding-left: 30px;">參考: </p>
 <p style="padding-left: 60px;"><a href="/downloads/de_volume_max.c">de_volume_max.c</a>, <a href="/downloads/de_volume_max.v">de_volume_max.v</a></p>
 <p>也可以採網頁前端使用 Brython，後端採 Python 執行運算後將資料傳回網頁: <a href="/downloads/brython_w_flask.7z">brython_w_flask.7z</a></p>
 <h1>Pyodide指令區</h1>
-<p>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
-</p>
-<p><button id="version">version</button> <button id="hello_button">hello</button> <button id="add1to100">1 add to 100</button> <button id="robot1">機器人巡邏</button><button id="free_walk">自由行</button> <button id="numpy_ode">numpy_ode</button></p>
-<!-- Ace Editor Scripts -->
-<p>
-<script src="/static/ace/FileSaver.min.js"></script>
-<script src="/static/ace/filereader.js"></script>
-<script src="/static/ace/ace.js"></script>
-<script src="/static/ace/ext-language_tools.js"></script>
-<script src="/static/ace/mode-python.js"></script>
-<script src="/static/ace/snippets/python.js"></script>
-</p>
-<!-- Editor 1 -->
+<p></p>
+<p><button id="version">version</button><span> </span><button id="hello_button">hello</button><span> </span><button id="add1to100">1 add to 100</button><span> </span><button id="robot1">機器人巡邏</button><button id="free_walk">自由行</button><span> </span><button id="numpy_ode">numpy_ode</button></p>
+<p></p>
 <div id="kw_editor1" style="width: 600px; height: 300px;"></div>
-<p><button id="kw_run1">Run</button> <button id="kw_output1">Output</button> <button id="kw_clear_console1">清除輸出區</button> <button onclick="location.reload()">Reload</button></p>
+<p><button id="kw_run1">Run</button><span> </span><button id="kw_output1">Output</button><span> </span><button id="kw_clear_console1">清除輸出區</button><span> </span><button onclick="location.reload()">Reload</button></p>
 <p><textarea id="kw_console1"></textarea></p>
 <div id="pyodide_div1"></div>
 <div id="mpl_output1"></div>
@@ -454,188 +202,13 @@ draw_robot()</pre>
 <hr/>
 <p>從 1 累加到 100 part2:</p>
 <p><button id="add1to100part2">1 add to 100</button></p>
-<!-- Editor 2 -->
 <div id="kw_editor2" style="width: 600px; height: 300px;"></div>
-<p><button id="kw_run2">Run</button> <button id="kw_output2">Output</button> <button id="kw_clear_console2">清除輸出區</button> <button onclick="location.reload()">Reload</button></p>
+<p><button id="kw_run2">Run</button><span> </span><button id="kw_output2">Output</button><span> </span><button id="kw_clear_console2">清除輸出區</button><span> </span><button onclick="location.reload()">Reload</button></p>
 <p><textarea id="kw_console2"></textarea></p>
 <div id="pyodide_div2"></div>
 <div id="mpl_output2"></div>
 <div id="brython_div2"></div>
-<p>
-<script>
-function getUrlParam(key) {
-  return new URLSearchParams(window.location.search).get(key);
-}
-function updateUrlParam(key, value) {
-  const url = new URL(window.location);
-  url.searchParams.set(key, value);
-  window.history.replaceState({}, "", url);
-}
-
-let pyodide, editor1, editor2;
-
-document.addEventListener("DOMContentLoaded", async () => {
-  editor1 = ace.edit("kw_editor1");
-  editor1.setTheme("ace/theme/chrome");
-  editor1.session.setMode("ace/mode/python");
-
-  editor2 = ace.edit("kw_editor2");
-  editor2.setTheme("ace/theme/chrome");
-  editor2.session.setMode("ace/mode/python");
-
-  pyodide = await loadPyodide();
-  await pyodide.loadPackage(["numpy", "scipy", "matplotlib", "micropip"]);
-
-  // 定義 hello() 模組
-  const code = `
-def hello():
-    print("Hello from custom module!")
-`;
-  pyodide.runPython(code);
-
-  const GIST_ADD1TO100 =
-    "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/" +
-    "c48e37714f055c3a0027cbfef59e442a6ef659b9/from_1_add_to_100_1.py";
-  const NUMPY_ODE =
-    "https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/" +
-    "98d582539545b3c9fbfa35dd3e605c506367618e/pyodide_ode_ex1.py";
-  const PYODIDE_ROBOT_ANIMATION =
-    "https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/" +
-    "f3d75d08f2b90f4470342e91ee1e5c36b5f950bf/pyodide_robot_ex1.py";
-  const FREE_WALK = 
-    "https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/" + "d1659628afe5d36a026ef305dc639f6be4c9f608/pyodide_robot_ex3.py"
-
-  const src = getUrlParam("src");
-  if (src === PYODIDE_ROBOT_ANIMATION) {
-    const robotCode = await fetchCode(PYODIDE_ROBOT_ANIMATION);
-    editor1.setValue(robotCode, -1);
-    updateUrlParam("src", PYODIDE_ROBOT_ANIMATION);
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  } else {
-    const initialCode = await fetchCode(src || GIST_ADD1TO100);
-    editor1.setValue(initialCode, -1);
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  }
-
-  editor2.setValue("", -1);
-
-  document.getElementById("version").onclick = () => {
-    const vcode = `
-import pyodide
-import sys
-import matplotlib
-import numpy
-import scipy
-print("Pyodide version:", pyodide.__version__)
-print("Python version :", sys.version)
-print("matplotlib version:", matplotlib.__version__)
-print("numpy version:", numpy.__version__)
-print("scipy version:", scipy.__version__)
-`;
-    editor1.setValue(vcode, -1);
-    updateUrlParam("src", "inline_version");
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  };
-
-  document.getElementById("hello_button").onclick = () => {
-    editor1.setValue("hello()", -1);
-    updateUrlParam("src", "inline_hello");
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  };
-
-  document.getElementById("add1to100").onclick = async () => {
-    const c = await fetchCode(GIST_ADD1TO100);
-    editor1.setValue(c, -1);
-    updateUrlParam("src", GIST_ADD1TO100);
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  };
-
-  document.getElementById("numpy_ode").onclick = async () => {
-    const c = await fetchCode(NUMPY_ODE);
-    editor1.setValue(c, -1);
-    updateUrlParam("src", NUMPY_ODE);
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  };
-
-  document.getElementById("robot1").onclick = async () => {
-    const rc = await fetchCode(PYODIDE_ROBOT_ANIMATION);
-    editor1.setValue(rc, -1);
-    updateUrlParam("src", PYODIDE_ROBOT_ANIMATION);
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  };
-
-  document.getElementById("free_walk").onclick = async () => {
-    const rc = await fetchCode(FREE_WALK);
-    editor1.setValue(rc, -1);
-    updateUrlParam("src", FREE_WALK);
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  };
-
-  document.getElementById("add1to100part2").onclick = async () => {
-    const c = await fetchCode(GIST_ADD1TO100);
-    editor2.setValue(c, -1);
-    runPyodide(editor2, "kw_console2", "brython_div2");
-  };
-
-  document.getElementById("kw_run1").onclick = () =>
-    runPyodide(editor1, "kw_console1", "brython_div1");
-  document.getElementById("kw_run2").onclick = () =>
-    runPyodide(editor2, "kw_console2", "brython_div2");
-  document.getElementById("kw_clear_console1").onclick = () =>
-    clearOutput("kw_console1", "brython_div1");
-  document.getElementById("kw_clear_console2").onclick = () =>
-    clearOutput("kw_console2", "brython_div2");
-});
-
-// 處理兩個 Output 列數
-  document.getElementById("kw_output1").onclick = () => {
-    const ta = document.getElementById("kw_console1");
-    ta.rows = "15";
-    ta.cols = "70";
-    ta.scrollTop = 0;
-  };
-  document.getElementById("kw_output2").onclick = () => {
-    const ta = document.getElementById("kw_console2");
-    ta.rows = "15";
-    ta.cols = "70";
-    ta.scrollTop = 0;
-  };
-
-async function fetchCode(url) {
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`載入失敗 ${r.status}`);
-  return await r.text();
-}
-
-function clearOutput(consoleId, divId) {
-  document.getElementById(consoleId).value = "";
-  document.getElementById(divId).innerHTML = "";
-}
-
-async function runPyodide(editor, consoleId, divId) {
-  document.getElementById(consoleId).value = "";
-  document.getElementById(divId).innerHTML = "";
-
-  await pyodide.runPythonAsync(`
-import sys
-class JsWriter:
-  def write(self, s):
-    from js import document
-    ta = document.getElementById("${consoleId}")
-    ta.value += s
-    ta.scrollTop = ta.scrollHeight
-sys.stdout = JsWriter()
-sys.stderr = JsWriter()
-`);
-
-  try {
-    await pyodide.runPythonAsync(editor.getValue());
-  } catch (e) {
-    document.getElementById(consoleId).value += "\n錯誤：" + e.toString();
-  }
-}
-</script>
-</p>
+<p></p>
 <h2>Pyodide</h2>
 <p><a href="https://mde.tw/cp2025/content/Pyodide.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/f3d75d08f2b90f4470342e91ee1e5c36b5f950bf/pyodide_robot_ex1.py">Pyodide 機器人巡邏</a></p>
 <p>Pyodide 導入客製化模組:</p>
@@ -648,10 +221,116 @@ pyodide.runPython(code);
 </pre>
 <p><a href="https://mde.tw/cp2025/content/Pyodide.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/3ed6869dcd7312254513ca507de17945e15a9b6f/box_max_volume_short.py">Volume_max_pyodide_de_short.py</a></p>
 <p><a href="https://mde.tw/cp2025/content/Pyodide.html?src=https://gist.githubusercontent.com/mdecycu/ec4bb35dd0769e7a83d2a9fa57878a67/raw/3ed6869dcd7312254513ca507de17945e15a9b6f/box_volume_max_pyodide_de.py">Volume_max_pyodide_de.py</a></p>
-<p></p>
-<h1>孤獨組長...</h1>
-<h2>組員失蹤+前帳號被封鎖QQ</h2>
-<h2>以下是我獨立奮鬥的過程+再戰的成果!!!!!</h2>
+<h1><span>學習心得報告主題</span></h1>
+<h2><span>w3</span></h2>
+<p><strong>什麼是 git, GitHub, gist 與 cmsimde? 如何使用這些工具？為什麼要使用這些工具？</strong></p>
+<p><span>為何Git 與 Github?</span></p>
+<p>使用 Git 與 GitHub 主要有以下幾個原因：</p>
+<ol>
+<li>版本控制: Git 是一套分散式的版本控制系統，能記錄每一個檔案的修改歷程。這樣就算不小心改壞了某一個版本的程式，也能隨時回復到以前的版本，而且在協同設計流程中，可以追蹤那一個使用者改了那些內容、什麼時候改的，可以快速釐清許多議題。</li>
+<li>團隊協作: 多個開發者可以同時對同一個專案進行開發，透過分支（branch）機制，各自開發新功能、修 bug，最後再合併（merge）到主分支，避免互相覆蓋程式碼。</li>
+<li>雲端備份與分享: GitHub 是基於 Git 的雲端代管平台，可以將本地的 Git 專案上傳到雲端，不怕資料遺失。也方便將程式碼公開或私下分享給其他人。</li>
+<li>問題追蹤與管理: GitHub 除了儲存程式碼，還提供 issue、pull request 等工具，有助於追蹤 bug、討論功能、審查程式碼，提高專案管理效率。</li>
+<li>開放原始碼與社群合作: 許多開放原始碼專案都放在 GitHub，任何人都能貢獻程式碼，促進社群協作與學習。</li>
+<li>總結：使用 Git 和 GitHub 可以讓程式開發更有組織、更安全、更容易協作與管理，也方便與他人分享、學習與成長。</li>
+</ol>
+<p><span>請舉實際的計算機程式開發案例，說明如何操作 Git 與 Github，以便取得程式開發流程的便利與優勢。</span></p>
+<p>Git 與 GitHub 操作案例說明</p>
+<h4>Git 與 GitHub 實際操作案例：多人開發 ToDo List 網站</h4>
+<div>
+<h4>1. 專案初始化與上傳</h4>
+<div>
+<h4><strong>步驟:</strong></h4>
+<ol>
+<li>在本機建立專案資料夾，初始化 Git：
+<pre><code>git init</code></pre>
+</li>
+<li>新增檔案（如<span> </span><code>index.html</code>、<code>app.js</code>），並提交第一個版本：
+<pre><code>git add .<br/>git commit -m "Initial commit"</code></pre>
+</li>
+<li>在 GitHub 建立新 repository，然後將本機專案推送到遠端：
+<pre><code>git remote add origin https://github.com/username/todo-app.git<br/>git push -u origin master</code></pre>
+</li>
+</ol>
+<p><strong>優勢:</strong>所有程式碼都有歷史紀錄，且安全備份於雲端。</p>
+</div>
+</div>
+<div>
+<h4>2. 分支開發新功能</h4>
+<div>
+<p><strong>情境:</strong>小明負責開發「新增待辦事項」功能。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>建立新分支：
+<pre><code>git checkout -b feature/add-todo-item</code></pre>
+</li>
+<li>實作功能並提交：
+<pre><code>git add .<br/>git commit -m "Add feature to create todo item"</code></pre>
+</li>
+<li>推送分支到 GitHub：
+<pre><code>git push origin feature/add-todo-item</code></pre>
+</li>
+</ol>
+<p><strong>優勢:</strong>各自分支開發，互不干擾，降低衝突風險。</p>
+</div>
+</div>
+<div>
+<h4>3. Pull Request（合併請求）與 Code Review</h4>
+<div class="step">
+<p><strong>情境:</strong>小明開發完成，欲合併新功能到主分支。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>在 GitHub 上建立 Pull Request，描述功能內容。</li>
+<li>其他團隊成員審查程式碼，提出建議或修正。</li>
+<li>經討論無誤後，管理員合併 PR。</li>
+</ol>
+<p><strong>優勢:</strong>強化程式品質與團隊溝通，每次合併都有討論紀錄。</p>
+</div>
+</div>
+<div>
+<h4>4. 處理 Bug 與 Issue 追蹤</h4>
+<div class="step">
+<p><strong>情境:</strong>使用者發現「無法刪除待辦事項」的 bug。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>在 GitHub issue 區提出 bug 報告。</li>
+<li>團隊分配成員修正，建立<span> </span><code>fix/delete-todo-bug</code><span> </span>分支。</li>
+<li>修正後提交、發 PR、review、合併。</li>
+</ol>
+<p><strong>優勢:</strong>所有 bug、功能需求有明確記錄，修正過程透明。</p>
+</div>
+</div>
+<div>
+<h4>5. 版本回溯與復原</h4>
+<div class="step">
+<p><strong>情境:</strong>新功能導致主分支出錯。</p>
+<p><strong>步驟:</strong></p>
+<ol>
+<li>透過 Git log 查找歷史版本：
+<pre><code>git log</code></pre>
+</li>
+<li>回復到上一個穩定版本：
+<pre><code>git checkout &lt;commit-id&gt;</code></pre>
+</li>
+</ol>
+<p><strong>優勢:</strong>不怕程式「改壞」，可隨時回復，輕鬆追蹤誰做了什麼修改。</p>
+</div>
+</div>
+<div>
+<h4>總結:</h4>
+<p>Git 與 GitHub 提供完整的版本控制、團隊協作、問題追蹤、程式碼審查與備份機制，讓開發流程更有條理，大幅提升開發效率與品質。不論團隊或個人開發，都能享有回溯、備份、管理等多重好處。</p>
+</div>
+<h2><strong><span>w7</span></strong></h2>
+<p><strong>Brython 是什麼？如何在瀏覽器配置 Brython 環境？ Brython 能做什麼？</strong></p>
+<p>A1.<a href="https://brython.info/">Brython</a> 是一個將 <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> 語法編譯為 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript">JavaScript</a> 的工具，能直接在瀏覽器中以 <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> 撰寫前端網頁程式。</p>
+<p>A2.</p>
+<p>A3.</p>
+<h2><strong><span>w10</span></strong></h2>
+<p><strong><span>如何在瀏覽器中模擬機器人作動？</span></strong></p>
+<p><strong><span></span></strong></p>
+<h2><strong><span>w14</span></strong></h2>
+<p><strong><span>在瀏覽器中模擬機器人作動的目的是什麼？</span></strong></p>
+<p><strong><span></span></strong></p>
 <h1>w11</h1>
 <h2>如何建立團體github網站</h2>
 <h3>一般作法</h3>
@@ -756,9 +435,51 @@ pyodide.runPython(code);
 <p><br/>（反方向同步，用來備份）</p>
 <p>✅ 一句話總結（你可以記這句）</p>
 <p>把「個人 repo」當來源，用 fetch + merge 合併到「Classroom repo」一次，之後只用 Classroom。</p>
-<p></p>
+<h3><strong>後來大家都要編輯需要中止同步</strong></h3>
+<p><strong>我:</strong></p>
+<p>我現在想要把我倉儲的跟我個人的倉儲都獨立成個體(取消我個人網站是主要，分組網站是備份)該怎麼做?</p>
+<p><strong>AI:</strong></p>
+<p>我們現在要做的是把：</p>
+<p>❌「一個 repo 推兩個 remote（主＋備）」<br/>改成<br/>✅「兩個完全獨立、互不影響的倉儲」</p>
+<p>我會給你 安全、可逆、一步一步 的做法。</p>
+<p>🎯 你的目標（確認）<br/>最終你要的是：</p>
+<p>倉儲 狀態<br/>個人倉儲 LanChienEn/w11 獨立開發<br/>Classroom 倉儲 mdecp2025/1a-ag2 獨立開發<br/>❌ 不再互相 push 完全切斷<br/>✅ 正確作法（「切斷關係」只做一次）<br/>🔹 Step 1：確認你現在在哪個資料夾（很重要）<br/>你現在應該在：</p>
+<p><br/>Y:\w11<br/>確認：</p>
+<p><br/>cd Y:\w11 git remote -v<br/>你會看到類似：</p>
+<p><br/>origin https://github.com/LanChienEn/w11.git backup https://github.com/mdecp2025/1a-ag2.git<br/>🔹 Step 2：移除 Classroom 的 remote（關鍵）<br/>在 Y:\w11 執行：</p>
+<p><br/>git remote remove backup<br/>確認：</p>
+<p><br/>git remote -v<br/>只剩：</p>
+<p><br/>origin https://github.com/LanChienEn/w11.git<br/>👉 到這裡：w11 本地專案已「只屬於個人倉儲」</p>
+<p>🔹 Step 3：讓 Classroom 倉儲也成為「自己的獨立個體」<br/>⚠️ 重要觀念<br/>Y:\1a-ag2 這個資料夾 已經是一個獨立 clone<br/>我們只要確保它：</p>
+<p>沒有連到你的個人倉儲</p>
+<p>只 push Classroom 自己</p>
+<p>進入它：</p>
+<p><br/>cd Y:\1a-ag2 git remote -v<br/>你應該只看到：</p>
+<p><br/>origin https://github.com/mdecp2025/1a-ag2.git<br/>❗ 如果你看到 personal / backup<br/>移除它們：</p>
+<p><br/>git remote remove personal git remote remove backup<br/>再確認：</p>
+<p><br/>git remote -v<br/>🎉 完成後的狀態（非常重要）</p>
+<p>📁 Y:\w11</p>
+<p><br/>origin → 個人 GitHub</p>
+<p>📁 Y:\1a-ag2</p>
+<p><br/>origin → Classroom GitHub<br/>👉 兩個 repo 再也不會互相影響</p>
+<p>🧠 之後你要怎麼用？（使用規則）<br/>🧑‍💻 開發個人網站</p>
+<p>cd Y:\w11 git add . git commit -m "個人網站更新" git push origin main<br/>👥 開發分組/Classroom 網站</p>
+<p>cd Y:\1a-ag2 git add . git commit -m "分組網站更新" git push origin main<br/>❌ 不再有 push 兩次<br/>❌ 不再有主/備概念</p>
+<p>🔥 常見錯誤（避免）<br/>錯誤 後果<br/>在 w11 push Classroom 再次混在一起<br/>用 --force Classroom 歷史會壞<br/>兩個 repo 混著改 容易誤 push<br/>🧪 快速檢查清單（考前 10 秒）<br/>在任何資料夾只做這件事：</p>
+<p><br/>git remote -v<br/>看到 一個 origin</p>
+<p>URL 正確</p>
+<p>就是「獨立乾淨狀態」✔️</p>
+<p><strong></strong></p>
+<h3><strong>以後只要小組成員要編輯</strong></h3>
+<p><strong>1.就在團體倉儲<span style="background-color: #ffff99;">開 Codespaces 進到 fluffy sniffle</span><span> </span>這個專案裡。</strong></p>
+<p><strong>2.在<span> </span><span style="background-color: #ffff99;">init_replit 裡輸入pip install flask flask_cors bs4 lxml pelican markdown gevent</span></strong></p>
+<p><strong>3.執行後<span style="background-color: #ffff99;">再輸入 python main.py&amp;</span></strong></p>
+<p><strong>4.在<span style="background-color: #ffff99;">終端機</span>的地方就會出現本網頁的網址</strong></p>
+<p><strong>5.編輯的頁面輸入首頁第一行密碼即可進入編輯畫面</strong></p>
 <h1>w12</h1>
 <h2><span style="background-color: #ffff00;">國旗旋轉</span></h2>
+<p><em><strong>(複製到首頁下Brython指令區)</strong></em></p>
+<p><em><strong>________________________________________________________________________</strong></em></p>
 <p># 畫中華民國國旗，並展示 90 度與 45 度順時針旋轉<br/># 導入 doc<br/>from browser import document as doc<br/># 以下將利用 html 產生所需的繪圖畫布<br/>from browser import html<br/># 利用 math 函式庫執行三角函數運算<br/>import math</p>
 <p># --- 畫布與環境設定 ---</p>
 <p># 定義畫布尺寸<br/>FLAG_W = 600<br/>FLAG_H = 400<br/># 旋轉中心點<br/>CENTER_X = FLAG_W / 2<br/>CENTER_Y = FLAG_H / 2</p>
@@ -766,54 +487,55 @@ pyodide.runPython(code);
 <p># 創建標籤和畫布<br/>brython_div &lt;= html.H3("原始國旗 (600x400)")<br/>canvas_orig = html.CANVAS(width = FLAG_W, height = FLAG_H, id = "flag_orig", style = {"border": "1px solid #ccc"})<br/>brython_div &lt;= canvas_orig</p>
 <p>brython_div &lt;= html.H3("順時針旋轉 90 度")<br/>canvas_90 = html.CANVAS(width = FLAG_W, height = FLAG_H, id = "flag_90", style = {"border": "1px solid #ccc"})<br/>brython_div &lt;= canvas_90</p>
 <p>brython_div &lt;= html.H3("順時針旋轉 45 度")<br/>canvas_45 = html.CANVAS(width = FLAG_W, height = FLAG_H, id = "flag_45", style = {"border": "1px solid #ccc"})<br/>brython_div &lt;= canvas_45</p>
-<p># --- 核心繪圖函數 (國旗內容) ---<br/>def draw_flag_content(ctx):<br/> """繪製未旋轉狀態的國旗內容，所有座標都是基於 (0, 0) 起點"""<br/> flag_w = FLAG_W<br/> flag_h = FLAG_H<br/> <br/> # 青天白日圖案的中心座標 (位於左上四分之一處)<br/> circle_x = flag_w/4<br/> circle_y = flag_h/4<br/> star_radius = flag_w/8 # 白日光芒半徑</p>
-<p># 1. 滿地紅 (Red Earth)<br/> ctx.fillStyle='rgb(255, 0, 0)'<br/> ctx.fillRect(0,0,flag_w,flag_h)</p>
-<p># 2. 青天 (Blue Sky)<br/> ctx.fillStyle='rgb(0, 0, 150)'<br/> ctx.fillRect(0,0,flag_w/2,flag_h/2)</p>
-<p># 3. 十二道光芒白日 (White Sun with Twelve Rays) - 採用原程式碼邏輯<br/> ctx.beginPath()<br/> angle = 0<br/> for i in range(24):<br/> # 採用原始程式碼中不常見的角度步進，確保旋轉前後形狀一致<br/> angle += 5*math.pi*2/12 <br/> toX = circle_x + math.cos(angle)*star_radius<br/> toY = circle_y + math.sin(angle)*star_radius<br/> if (i):<br/> ctx.lineTo(toX, toY)<br/> else:<br/> ctx.moveTo(toX, toY)<br/> ctx.closePath()<br/> ctx.fillStyle = '#fff'<br/> ctx.fill()</p>
-<p># 4. 白日:藍圈 (Blue Ring)<br/> ctx.beginPath()<br/> # 原始半徑: flag_w * 17 / 240<br/> ctx.arc(circle_x, circle_y, flag_w*17/240, 0, math.pi*2, True)<br/> ctx.closePath()<br/> ctx.fillStyle = 'rgb(0, 0, 149)'<br/> ctx.fill()</p>
-<p># 5. 白日:白心 (White Center)<br/> ctx.beginPath()<br/> # 原始半徑: flag_w / 16<br/> ctx.arc(circle_x, circle_y, flag_w/16, 0, math.pi*2, True)<br/> ctx.closePath()<br/> ctx.fillStyle = '#fff'<br/> ctx.fill()</p>
-<p># --- 繪製函數：原始國旗 ---<br/>def draw_original_flag():<br/> ctx = doc["flag_orig"].getContext("2d")<br/> draw_flag_content(ctx)</p>
-<p># --- 繪製函數：順時針旋轉 90 度 ---<br/>def draw_90_degree_flag():<br/> ctx = doc["flag_90"].getContext("2d")<br/> <br/> # 1. 儲存當前狀態<br/> ctx.save()<br/> <br/> # 2. 平移原點到畫布中心 (600/2, 400/2) = (300, 200)<br/> ctx.translate(CENTER_X, CENTER_Y)<br/> <br/> # 3. 旋轉 90 度 (π/2) 順時針<br/> ctx.rotate(math.pi / 2)<br/> <br/> # 4. 將原點平移回去，以便國旗內容以 (0, 0) 為起點繪製<br/> ctx.translate(-CENTER_X, -CENTER_Y)<br/> <br/> # 5. 繪製國旗內容<br/> draw_flag_content(ctx)<br/> <br/> # 6. 恢復狀態<br/> ctx.restore()</p>
-<p># --- 繪製函數：順時針旋轉 45 度 ---<br/>def draw_45_degree_flag():<br/> ctx = doc["flag_45"].getContext("2d")<br/> <br/> # 1. 儲存當前狀態<br/> ctx.save()<br/> <br/> # 2. 平移原點到畫布中心<br/> ctx.translate(CENTER_X, CENTER_Y)<br/> <br/> # 3. 旋轉 45 度 (π/4) 順時針<br/> ctx.rotate(math.pi / 4)<br/> <br/> # 4. 將原點平移回去<br/> ctx.translate(-CENTER_X, -CENTER_Y)<br/> <br/> # 5. 繪製國旗內容<br/> draw_flag_content(ctx)<br/> <br/> # 6. 恢復狀態<br/> ctx.restore()</p>
+<p># --- 核心繪圖函數 (國旗內容) ---<br/>def draw_flag_content(ctx):<br/>"""繪製未旋轉狀態的國旗內容，所有座標都是基於 (0, 0) 起點"""<br/>flag_w = FLAG_W<br/>flag_h = FLAG_H<br/><br/># 青天白日圖案的中心座標 (位於左上四分之一處)<br/>circle_x = flag_w/4<br/>circle_y = flag_h/4<br/>star_radius = flag_w/8 # 白日光芒半徑</p>
+<p># 1. 滿地紅 (Red Earth)<br/>ctx.fillStyle='rgb(255, 0, 0)'<br/>ctx.fillRect(0,0,flag_w,flag_h)</p>
+<p># 2. 青天 (Blue Sky)<br/>ctx.fillStyle='rgb(0, 0, 150)'<br/>ctx.fillRect(0,0,flag_w/2,flag_h/2)</p>
+<p># 3. 十二道光芒白日 (White Sun with Twelve Rays) - 採用原程式碼邏輯<br/>ctx.beginPath()<br/>angle = 0<br/>for i in range(24):<br/># 採用原始程式碼中不常見的角度步進，確保旋轉前後形狀一致<br/>angle += 5*math.pi*2/12<br/>toX = circle_x + math.cos(angle)*star_radius<br/>toY = circle_y + math.sin(angle)*star_radius<br/>if (i):<br/>ctx.lineTo(toX, toY)<br/>else:<br/>ctx.moveTo(toX, toY)<br/>ctx.closePath()<br/>ctx.fillStyle = '#fff'<br/>ctx.fill()</p>
+<p># 4. 白日:藍圈 (Blue Ring)<br/>ctx.beginPath()<br/># 原始半徑: flag_w * 17 / 240<br/>ctx.arc(circle_x, circle_y, flag_w*17/240, 0, math.pi*2, True)<br/>ctx.closePath()<br/>ctx.fillStyle = 'rgb(0, 0, 149)'<br/>ctx.fill()</p>
+<p># 5. 白日:白心 (White Center)<br/>ctx.beginPath()<br/># 原始半徑: flag_w / 16<br/>ctx.arc(circle_x, circle_y, flag_w/16, 0, math.pi*2, True)<br/>ctx.closePath()<br/>ctx.fillStyle = '#fff'<br/>ctx.fill()</p>
+<p># --- 繪製函數：原始國旗 ---<br/>def draw_original_flag():<br/>ctx = doc["flag_orig"].getContext("2d")<br/>draw_flag_content(ctx)</p>
+<p># --- 繪製函數：順時針旋轉 90 度 ---<br/>def draw_90_degree_flag():<br/>ctx = doc["flag_90"].getContext("2d")<br/><br/># 1. 儲存當前狀態<br/>ctx.save()<br/><br/># 2. 平移原點到畫布中心 (600/2, 400/2) = (300, 200)<br/>ctx.translate(CENTER_X, CENTER_Y)<br/><br/># 3. 旋轉 90 度 (π/2) 順時針<br/>ctx.rotate(math.pi / 2)<br/><br/># 4. 將原點平移回去，以便國旗內容以 (0, 0) 為起點繪製<br/>ctx.translate(-CENTER_X, -CENTER_Y)<br/><br/># 5. 繪製國旗內容<br/>draw_flag_content(ctx)<br/><br/># 6. 恢復狀態<br/>ctx.restore()</p>
+<p># --- 繪製函數：順時針旋轉 45 度 ---<br/>def draw_45_degree_flag():<br/>ctx = doc["flag_45"].getContext("2d")<br/><br/># 1. 儲存當前狀態<br/>ctx.save()<br/><br/># 2. 平移原點到畫布中心<br/>ctx.translate(CENTER_X, CENTER_Y)<br/><br/># 3. 旋轉 45 度 (π/4) 順時針<br/>ctx.rotate(math.pi / 4)<br/><br/># 4. 將原點平移回去<br/>ctx.translate(-CENTER_X, -CENTER_Y)<br/><br/># 5. 繪製國旗內容<br/>draw_flag_content(ctx)<br/><br/># 6. 恢復狀態<br/>ctx.restore()</p>
 <p># --- 執行繪圖 ---<br/>draw_original_flag()<br/>draw_90_degree_flag()<br/>draw_45_degree_flag()</p>
 <h2><span style="background-color: #ffff00;">機器人七段程式碼</span></h2>
-<p></p>
+<p><em><strong>(複製到首頁下Brython指令區)</strong></em></p>
+<p><em><strong>________________________________________________________________________</strong></em></p>
 <p>#請修正以下程式讓機器人可以走出七段顯示器格式的數字<br/>from robot_lib import World as BaseWorld, AnimatedRobot as BaseRobot, timer, CELL_SIZE</p>
-<p># --- 1. 定義世界（加入細格） ---<br/>class MyWorld(BaseWorld):<br/> def __init__(self, width=10, height=10, sub_cell=5):<br/> super().__init__(width, height)<br/> self.sub_cell = sub_cell<br/> self.sub_size = CELL_SIZE // sub_cell<br/> self._draw_fine_grid()</p>
-<p>def _draw_fine_grid(self):<br/> ctx = self.layers["grid"].getContext("2d")<br/> ctx.strokeStyle = "#e0e0e0"<br/> ctx.lineWidth = 0.5<br/> # 畫垂直細線<br/> for i in range(self.width * self.sub_cell + 1):<br/> x = i * self.sub_size<br/> ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, self.height * CELL_SIZE); ctx.stroke()<br/> # 畫水平細線<br/> for j in range(self.height * self.sub_cell + 1):<br/> y = j * self.sub_size<br/> ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(self.width * CELL_SIZE, y); ctx.stroke()</p>
-<p># 細格座標轉換為像素座標<br/> def sub_to_px(self, sub_x, sub_y):<br/> big_x = sub_x // self.sub_cell<br/> big_y = sub_y // self.sub_cell<br/> offset_x = (sub_x % self.sub_cell) * self.sub_size<br/> <br/> # 修正點 1: 反轉細格內 Y 偏移量 (oy)，使 sub_y 越大 (往下)，py 越大 (螢幕上往下)。<br/> # 這確保了我們將 (sub_x, sub_y) 視為 Y 軸向下增加的網格座標。<br/> sub_y_offset = sub_y % self.sub_cell<br/> offset_y = (self.sub_cell - 1 - sub_y_offset) * self.sub_size<br/> <br/> px = big_x * CELL_SIZE + offset_x + self.sub_size // 2<br/> <br/> # BaseWorld 的 Y 軸是從下往上。<br/> # 總像素 Y 座標 (py) 仍然需要反轉 big_y，以匹配螢幕座標（Y 軸向下）。<br/> py = (self.height - 1 - big_y) * CELL_SIZE + offset_y + self.sub_size // 2<br/> return px, py</p>
-<p># 在細格座標上畫線<br/> def draw_line(self, x1, y1, x2, y2):<br/> ctx = self.layers["objects"].getContext("2d")<br/> ctx.strokeStyle = "#d33"<br/> ctx.lineWidth = 9<br/> ctx.lineCap = "round"<br/> ctx.beginPath()<br/> ctx.moveTo(*self.sub_to_px(x1, y1))<br/> ctx.lineTo(*self.sub_to_px(x2, y2))<br/> ctx.stroke()</p>
-<p># --- 2. 定義機器人（以細格移動） ---<br/>class MyRobot(BaseRobot):<br/> def __init__(self, world, start_big_x=1, start_big_y=1):<br/> super().__init__(world, start_big_x, start_big_y)<br/> # 初始位置轉換為細格中心<br/> self.sub_x = start_big_x * world.sub_cell + world.sub_cell // 2<br/> self.sub_y = start_big_y * world.sub_cell + world.sub_cell // 2<br/> self.robot_size = world.sub_size * 1.8</p>
-<p># 重新繪製機器人（使用細格座標）<br/> def _draw_robot(self):<br/> self.robot_ctx.clearRect(0, 0, self.world.width * CELL_SIZE, self.world.height * CELL_SIZE)<br/> img = self.images[self.facing]<br/> px, py = self.world.sub_to_px(self.sub_x, self.sub_y)<br/> s = self.robot_size<br/> if img.complete:<br/> self.robot_ctx.drawImage(img, px - s//2, py - s//2, s, s)</p>
-<p># 瞬間移動（不畫線）<br/> def teleport_to(self, tx, ty):<br/> def action(done):<br/> self.sub_x, self.sub_y = tx, ty<br/> self._draw_robot()<br/> timer.set_timeout(done, 10)<br/> self.queue.append(action)<br/> self._run_queue()</p>
-<p># 移動 + 畫線（最核心）<br/> def move_to(self, tx, ty, draw_trace=True):<br/> def action(done):<br/> def step():<br/> if self.sub_x == tx and self.sub_y == ty:<br/> done(); return<br/> prev_x, prev_y = self.sub_x, self.sub_y</p>
-<p># 計算方向並轉向 (維持原始程式的邏輯，因其主要修正點不在這裡)<br/> dx = tx - self.sub_x<br/> dy = ty - self.sub_y<br/> if dx &gt; 0: target = "E"<br/> elif dx &lt; 0: target = "W"<br/> elif dy &gt; 0: target = "N"<br/> else: target = "S"</p>
-<p># 同步轉向（安全版）<br/> while self.facing != target:<br/> idx = self.facing_order.index(self.facing)<br/> self.facing = self.facing_order[(idx + 1) % 4]</p>
-<p># 移動一步<br/> self.sub_x += 1 if dx &gt; 0 else (-1 if dx &lt; 0 else 0)<br/> self.sub_y += 1 if dy &gt; 0 else (-1 if dy &lt; 0 else 0)</p>
-<p>if draw_trace:<br/> self.world.draw_line(prev_x, prev_y, self.sub_x, self.sub_y)<br/> self._draw_robot()<br/> # 調整速度，讓線條更平滑<br/> timer.set_timeout(step, 40)<br/> step()<br/> self.queue.append(action)<br/> self._run_queue()</p>
-<p># --- 3. 七段顯示器定義 ---<br/>SEGMENTS = {<br/> 0:[1,1,1,1,1,1,0], 1:[0,1,1,0,0,0,0], 2:[1,1,0,1,1,0,1],<br/> 3:[1,1,1,1,0,0,1], 4:[0,1,1,0,0,1,1], 5:[1,0,1,1,0,1,1],<br/> 6:[1,0,1,1,1,1,1], 7:[1,1,1,0,0,0,0], 8:[1,1,1,1,1,1,1],<br/> 9:[1,1,1,1,0,1,1]<br/>}</p>
-<p># 每個線段的細格座標路徑（相對座標）<br/># 七段顯示器結構是相對座標，高度 7 細格 (0-6)，寬度 4 細格 (0-3)。<br/># 這裡定義的 PATHS 仍是 Y 軸向下增加 (Y=0 頂部, Y=6 底部)<br/>PATHS = [<br/> [(0,0),(1,0),(2,0),(3,0)], # A 上 (Y=0)<br/> [(3,0),(3,1),(3,2),(3,3)], # B 右上<br/> [(3,3),(3,4),(3,5),(3,6)], # C 右下<br/> [(3,6),(2,6),(1,6),(0,6)], # D 下 (Y=6)<br/> [(0,6),(0,5),(0,4),(0,3)], # E 左下<br/> [(0,3),(0,2),(0,1),(0,0)], # F 左上<br/> [(0,3),(1,3),(2,3),(3,3)] # G 中 (Y=3)<br/>]</p>
-<p>def draw_digit(robot, digit, ox, oy):<br/> # 修正點 2: 引入七段顯示器的高度 (最大 Y 座標)<br/> SEGMENT_HEIGHT = 6<br/> if digit not in SEGMENTS: return<br/> <br/> for i, on in enumerate(SEGMENTS[digit]):<br/> if not on: continue<br/> path = PATHS[i]<br/> <br/> # 修正點 3: 進行 Y 座標反轉：y_fixed = oy + (SEGMENT_HEIGHT - relative_y)<br/> # 將 Y 軸向下增加的相對座標 (0-6) 轉換為 Y 軸向上增加的繪圖座標。<br/> <br/> # 初始位置<br/> start_x = ox + path[0][0]<br/> start_y = oy + (SEGMENT_HEIGHT - path[0][1]) # 關鍵反轉<br/> robot.teleport_to(start_x, start_y)<br/> <br/> for j in range(1, len(path)):<br/> tx = ox + path[j][0]<br/> ty = oy + (SEGMENT_HEIGHT - path[j][1]) # 關鍵反轉<br/> robot.move_to(tx, ty, draw_trace=True)</p>
-<p># ==================== 主程式：畫 0123456789 ====================<br/># 修正 World 寬度，以容納 10 個數字 (10 * 6 寬度 + 邊距)<br/>world = MyWorld(65, 10, sub_cell=5) <br/># 將機器人起始點設在細格 (0, 0) 附近<br/>robot = MyRobot(world, 0, 0)</p>
+<p># --- 1. 定義世界（加入細格） ---<br/>class MyWorld(BaseWorld):<br/>def __init__(self, width=10, height=10, sub_cell=5):<br/>super().__init__(width, height)<br/>self.sub_cell = sub_cell<br/>self.sub_size = CELL_SIZE // sub_cell<br/>self._draw_fine_grid()</p>
+<p>def _draw_fine_grid(self):<br/>ctx = self.layers["grid"].getContext("2d")<br/>ctx.strokeStyle = "#e0e0e0"<br/>ctx.lineWidth = 0.5<br/># 畫垂直細線<br/>for i in range(self.width * self.sub_cell + 1):<br/>x = i * self.sub_size<br/>ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, self.height * CELL_SIZE); ctx.stroke()<br/># 畫水平細線<br/>for j in range(self.height * self.sub_cell + 1):<br/>y = j * self.sub_size<br/>ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(self.width * CELL_SIZE, y); ctx.stroke()</p>
+<p># 細格座標轉換為像素座標<br/>def sub_to_px(self, sub_x, sub_y):<br/>big_x = sub_x // self.sub_cell<br/>big_y = sub_y // self.sub_cell<br/>offset_x = (sub_x % self.sub_cell) * self.sub_size<br/><br/># 修正點 1: 反轉細格內 Y 偏移量 (oy)，使 sub_y 越大 (往下)，py 越大 (螢幕上往下)。<br/># 這確保了我們將 (sub_x, sub_y) 視為 Y 軸向下增加的網格座標。<br/>sub_y_offset = sub_y % self.sub_cell<br/>offset_y = (self.sub_cell - 1 - sub_y_offset) * self.sub_size<br/><br/>px = big_x * CELL_SIZE + offset_x + self.sub_size // 2<br/><br/># BaseWorld 的 Y 軸是從下往上。<br/># 總像素 Y 座標 (py) 仍然需要反轉 big_y，以匹配螢幕座標（Y 軸向下）。<br/>py = (self.height - 1 - big_y) * CELL_SIZE + offset_y + self.sub_size // 2<br/>return px, py</p>
+<p># 在細格座標上畫線<br/>def draw_line(self, x1, y1, x2, y2):<br/>ctx = self.layers["objects"].getContext("2d")<br/>ctx.strokeStyle = "#d33"<br/>ctx.lineWidth = 9<br/>ctx.lineCap = "round"<br/>ctx.beginPath()<br/>ctx.moveTo(*self.sub_to_px(x1, y1))<br/>ctx.lineTo(*self.sub_to_px(x2, y2))<br/>ctx.stroke()</p>
+<p># --- 2. 定義機器人（以細格移動） ---<br/>class MyRobot(BaseRobot):<br/>def __init__(self, world, start_big_x=1, start_big_y=1):<br/>super().__init__(world, start_big_x, start_big_y)<br/># 初始位置轉換為細格中心<br/>self.sub_x = start_big_x * world.sub_cell + world.sub_cell // 2<br/>self.sub_y = start_big_y * world.sub_cell + world.sub_cell // 2<br/>self.robot_size = world.sub_size * 1.8</p>
+<p># 重新繪製機器人（使用細格座標）<br/>def _draw_robot(self):<br/>self.robot_ctx.clearRect(0, 0, self.world.width * CELL_SIZE, self.world.height * CELL_SIZE)<br/>img = self.images[self.facing]<br/>px, py = self.world.sub_to_px(self.sub_x, self.sub_y)<br/>s = self.robot_size<br/>if img.complete:<br/>self.robot_ctx.drawImage(img, px - s//2, py - s//2, s, s)</p>
+<p># 瞬間移動（不畫線）<br/>def teleport_to(self, tx, ty):<br/>def action(done):<br/>self.sub_x, self.sub_y = tx, ty<br/>self._draw_robot()<br/>timer.set_timeout(done, 10)<br/>self.queue.append(action)<br/>self._run_queue()</p>
+<p># 移動 + 畫線（最核心）<br/>def move_to(self, tx, ty, draw_trace=True):<br/>def action(done):<br/>def step():<br/>if self.sub_x == tx and self.sub_y == ty:<br/>done(); return<br/>prev_x, prev_y = self.sub_x, self.sub_y</p>
+<p># 計算方向並轉向 (維持原始程式的邏輯，因其主要修正點不在這裡)<br/>dx = tx - self.sub_x<br/>dy = ty - self.sub_y<br/>if dx &gt; 0: target = "E"<br/>elif dx &lt; 0: target = "W"<br/>elif dy &gt; 0: target = "N"<br/>else: target = "S"</p>
+<p># 同步轉向（安全版）<br/>while self.facing != target:<br/>idx = self.facing_order.index(self.facing)<br/>self.facing = self.facing_order[(idx + 1) % 4]</p>
+<p># 移動一步<br/>self.sub_x += 1 if dx &gt; 0 else (-1 if dx &lt; 0 else 0)<br/>self.sub_y += 1 if dy &gt; 0 else (-1 if dy &lt; 0 else 0)</p>
+<p>if draw_trace:<br/>self.world.draw_line(prev_x, prev_y, self.sub_x, self.sub_y)<br/>self._draw_robot()<br/># 調整速度，讓線條更平滑<br/>timer.set_timeout(step, 40)<br/>step()<br/>self.queue.append(action)<br/>self._run_queue()</p>
+<p># --- 3. 七段顯示器定義 ---<br/>SEGMENTS = {<br/>0:[1,1,1,1,1,1,0], 1:[0,1,1,0,0,0,0], 2:[1,1,0,1,1,0,1],<br/>3:[1,1,1,1,0,0,1], 4:[0,1,1,0,0,1,1], 5:[1,0,1,1,0,1,1],<br/>6:[1,0,1,1,1,1,1], 7:[1,1,1,0,0,0,0], 8:[1,1,1,1,1,1,1],<br/>9:[1,1,1,1,0,1,1]<br/>}</p>
+<p># 每個線段的細格座標路徑（相對座標）<br/># 七段顯示器結構是相對座標，高度 7 細格 (0-6)，寬度 4 細格 (0-3)。<br/># 這裡定義的 PATHS 仍是 Y 軸向下增加 (Y=0 頂部, Y=6 底部)<br/>PATHS = [<br/>[(0,0),(1,0),(2,0),(3,0)], # A 上 (Y=0)<br/>[(3,0),(3,1),(3,2),(3,3)], # B 右上<br/>[(3,3),(3,4),(3,5),(3,6)], # C 右下<br/>[(3,6),(2,6),(1,6),(0,6)], # D 下 (Y=6)<br/>[(0,6),(0,5),(0,4),(0,3)], # E 左下<br/>[(0,3),(0,2),(0,1),(0,0)], # F 左上<br/>[(0,3),(1,3),(2,3),(3,3)] # G 中 (Y=3)<br/>]</p>
+<p>def draw_digit(robot, digit, ox, oy):<br/># 修正點 2: 引入七段顯示器的高度 (最大 Y 座標)<br/>SEGMENT_HEIGHT = 6<br/>if digit not in SEGMENTS: return<br/><br/>for i, on in enumerate(SEGMENTS[digit]):<br/>if not on: continue<br/>path = PATHS[i]<br/><br/># 修正點 3: 進行 Y 座標反轉：y_fixed = oy + (SEGMENT_HEIGHT - relative_y)<br/># 將 Y 軸向下增加的相對座標 (0-6) 轉換為 Y 軸向上增加的繪圖座標。<br/><br/># 初始位置<br/>start_x = ox + path[0][0]<br/>start_y = oy + (SEGMENT_HEIGHT - path[0][1]) # 關鍵反轉<br/>robot.teleport_to(start_x, start_y)<br/><br/>for j in range(1, len(path)):<br/>tx = ox + path[j][0]<br/>ty = oy + (SEGMENT_HEIGHT - path[j][1]) # 關鍵反轉<br/>robot.move_to(tx, ty, draw_trace=True)</p>
+<p># ==================== 主程式：畫 0123456789 ====================<br/># 修正 World 寬度，以容納 10 個數字 (10 * 6 寬度 + 邊距)<br/>world = MyWorld(65, 10, sub_cell=5)<br/># 將機器人起始點設在細格 (0, 0) 附近<br/>robot = MyRobot(world, 0, 0)</p>
 <p># Y 軸偏移量 oy：<br/>START_Y_SUB_CELL = 1</p>
-<p>for i in range(10):<br/> # 每個數字的起始 X 細格座標 (每個數字寬度 4，間隔 2，共 6 寬度)<br/> start_x_offset = 1 + i * 6 <br/> draw_digit(robot, i, start_x_offset, START_Y_SUB_CELL)</p>
+<p>for i in range(10):<br/># 每個數字的起始 X 細格座標 (每個數字寬度 4，間隔 2，共 6 寬度)<br/>start_x_offset = 1 + i * 6<br/>draw_digit(robot, i, start_x_offset, START_Y_SUB_CELL)</p>
 <p>print("機器人正在寫字：0123456789 (已修正座標反轉問題)")</p>
-<p></p>
+<p><em><strong>________________________________________________________________________</strong></em></p>
 <h1>期末報告1(w14三個操作)</h1>
-<h2><span data-teams="true">操作一、操作二</span></h2>
+<h2>操作一、操作二</h2>
 <p><span data-teams="true">影片:<a href="https://youtu.be/HyKCpGbWiek">https://youtu.be/HyKCpGbWiek</a></span></p>
-<h2><span data-teams="true">第二個程式的執行</span></h2>
+<h2>第二個程式的執行</h2>
 <p><span data-teams="true"><span>影片:</span><a href="https://youtu.be/gs6Zbh4u41A">https://youtu.be/gs6Zbh4u41A</a></span></p>
-<h2><span data-teams="true">第三個憤怒鳥小遊戲</span></h2>
+<h2>第三個憤怒鳥小遊戲</h2>
 <p><span data-teams="true"><span>影片:<a href="https://youtu.be/Mebi7DRFnMc">https://youtu.be/Mebi7DRFnMc</a></span></span></p>
 <h1>期末報告2(程式新功能)</h1>
-<h2><span data-teams="true">第二個程式的改良</span></h2>
+<h2>第二個程式的改良</h2>
 <p><span data-teams="true">以下是第二個程式的原始碼分析:</span></p>
-<p><strong>一、整體架構總覽</strong></p>
+<p><span style="background-color: #ccffff;"><strong>一、整體架構總覽</strong></span></p>
 <p>這是一個：Flask 網頁 + Brython 寫的點擊小遊戲 + Ajax 上傳分數</p>
 <p>📌 技術角色分工：</p>
 <p>技術 用途<br/>Flask 後端伺服器、分數儲存<br/>Jinja2 HTML 模板引擎<br/>Brython 在瀏覽器執行 Python<br/>JavaScript (Ajax) 非同步送分數<br/>HTML / CSS 遊戲畫面</p>
-<p><br/><strong>二、Jinja2 模板結構說明</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>二、Jinja2 模板結構說明</strong></span></p>
 <p>{% extends "base.html" %}</p>
 <p>🔹 繼承 base.html</p>
 <p>使用 Flask 常見的 模板繼承</p>
@@ -824,46 +546,52 @@ pyodide.runPython(code);
 <p>共用 CSS<br/>{% block title %}Brython 遊戲{% endblock %}<br/>🔹 設定頁面標題<br/>對應 base.html 裡的 {% block title %}</p>
 <p>瀏覽器標題顯示「Brython 遊戲」</p>
 <p><br/>{% block content %} ... {% endblock %}<br/>🔹 主內容區<br/>整個遊戲畫面都在這個區塊內</p>
-<p><strong>三、載入 Brython</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>三、載入 Brython</strong></span></p>
 <p>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt; &lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython_stdlib.js"&gt;&lt;/script&gt;<br/>🔹 這兩個做什麼？<br/>檔案 功能<br/>brython.min.js Brython 核心<br/>brython_stdlib.js Python 標準函式庫<br/>📌 沒有它們，瀏覽器看不懂 &lt;script type="text/python"&gt;</p>
 <p><br/>&lt;body onload="brython(1)"&gt;<br/>🔹 啟動 Brython<br/>網頁載入完成 → 啟動 Brython</p>
 <p>1 代表「debug 模式」</p>
-<p><strong>四、遊戲畫面 HTML</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>四、遊戲畫面 HTML</strong></span></p>
 <p>&lt;h2 style="text-align: center;"&gt;🕹️ 點擊測試：點擊移動中的圓形！&lt;/h2&gt;<br/>➡️ 遊戲標題</p>
 <p><br/>&lt;div id="brython_div1" style="width: 600px; height: 400px; margin: 20px auto;"&gt;&lt;/div&gt;<br/>🔹 遊戲場地<br/>寬：600px</p>
 <p>高：400px</p>
 <p>所有遊戲元素都動態加到這裡</p>
-<p><strong>五、為什麼要用 {% raw %}？</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>五、為什麼要用 {% raw %}？</strong></span></p>
 <p>{% raw %} &lt;script type="text/python"&gt;<br/>🔹 解決的問題<br/>Brython 裡有：</p>
 <p>f"{score}"</p>
 <p>{}</p>
 <p>⚠️ Jinja2 會誤以為是模板語法</p>
-<p>➡️ {% raw %} 告訴 Jinja2：</p>
-<p>「這一段我不解析，原封不動交給瀏覽器」</p>
-<p><strong>六、Brython：匯入模組</strong></p>
+<p>➡️ {% raw %} 告訴 Jinja2：「這一段我不解析，原封不動交給瀏覽器」</p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>六、Brython：匯入模組</strong></span></p>
 <p>from browser import document, timer, window, ajax import random import time<br/>🔹 每個模組用途<br/>模組 功能<br/>document 操作 DOM<br/>timer setTimeout / setInterval<br/>window JS 的 window<br/>ajax Ajax 請求<br/>random 隨機位置、顏色<br/>time 計時</p>
-<p><br/><strong>七、遊戲全域設定</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>七、遊戲全域設定</strong></span></p>
 <p>GAME_DURATION = 30 score = 0 game_active = False<br/>變數 說明<br/>GAME_DURATION 遊戲時間（秒）<br/>score 玩家分數<br/>game_active 是否進行中</p>
-<p><br/><strong>八、初始化遊戲區（DOM 操作）</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>八、初始化遊戲區（DOM 操作）</strong></span></p>
 <p>game_area = document["brython_div1"]<br/>➡️ 抓取 &lt;div id="brython_div1"&gt;</p>
 <p><br/>game_area.style.border = "3px solid #333" game_area.style.backgroundColor = "#e0e0ff" game_area.style.position = "relative"</p>
 <p>🔹 為什麼要 position: relative？</p>
 <p>👉 讓裡面的圓形可以用 absolute 定位</p>
-<p><strong>九、分數與時間顯示區</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>九、分數與時間顯示區</strong></span></p>
 <p>score_display = document.createElement("div") timer_display = document.createElement("div")<br/>左上角：分數</p>
 <p>右上角：倒數時間</p>
 <p>📌 這些都是 動態建立的 DOM 元素</p>
-<p><strong>十、目標圓形（遊戲核心）</strong></p>
+<p><span style="background-color: #ccffff;"><strong>十、目標圓形（遊戲核心）</strong></span></p>
 <p>target = document.createElement("div") target.style.width = "50px" target.style.height = "50px" target.style.borderRadius = "50%"<br/>➡️ 一個 50×50 的圓形</p>
 <p><br/>target.style.transition = "top 0.3s, left 0.3s"<br/>➡️ 平滑移動動畫</p>
-<p><strong>十一、移動圓形</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>十一、移動圓形</strong></span></p>
 <p>def move_target():<br/>🔹 功能流程<br/>檢查遊戲是否進行中</p>
 <p>計算最大可移動範圍</p>
 <p>隨機產生新位置</p>
 <p>隨機顏色</p>
 <p>更新 top / left</p>
 <p>📌 min_y = 40<br/>→ 避免蓋住上方分數欄</p>
-<p><strong>十二、點擊事件</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>十二、點擊事件</strong></span></p>
 <p>@target.bind("click") def hit_target(event):<br/>🔹 這裡很重要！<br/>只有點到圓形才會觸發</p>
 <p>不用額外計算距離</p>
 <p>流程：</p>
@@ -871,7 +599,8 @@ pyodide.runPython(code);
 <p>更新顯示</p>
 <p>圓形立即移動</p>
 <p>stopPropagation() 防止事件冒泡</p>
-<p><strong>十三、Ajax 上傳分數（Brython → Flask）</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>十三、Ajax 上傳分數（Brython → Flask）</strong></span></p>
 <p>req.open('POST', '{{ url_for("submit_score") }}', True)</p>
 <p>🔹 為什麼要 {% endraw %}？</p>
 <p>url_for() 必須由 Jinja2 處理</p>
@@ -879,7 +608,7 @@ pyodide.runPython(code);
 <p>👉 這是 Flask + Brython 混用的標準寫法</p>
 <p><br/>json_payload = window.JSON.stringify({'score': final_score}) req.send(json_payload)<br/>➡️ 送出 JSON：</p>
 <p><br/>{ "score": 15 }</p>
-<p><br/><strong>十四、倒數計時與遊戲結束</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>十四、倒數計時與遊戲結束</strong></span></p>
 <p>def check_time():<br/>每秒執行：</p>
 <p>計算剩餘時間</p>
 <p>時間到：</p>
@@ -887,27 +616,29 @@ pyodide.runPython(code);
 <p>上傳分數</p>
 <p>顯示結束畫面</p>
 <p>清除移動計時器</p>
-<p><strong>十五、重新開始</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>十五、重新開始</strong></span></p>
 <p>def restart_game(event):<br/>隱藏結束畫面</p>
 <p>重新初始化遊戲</p>
-<p><strong>十六、遊戲啟動流程</strong></p>
+<p></p>
+<p><span style="background-color: #ccffff;"><strong>十六、遊戲啟動流程</strong></span></p>
 <p>def start_game(): score = 0 game_active = True check_time() move_target() timer.set_interval(move_target, 800)<br/>📌 啟動時會：</p>
 <p>分數歸零</p>
 <p>啟動倒數</p>
 <p>每 0.8 秒移動一次圓形</p>
 <p><br/>start_game()<br/>➡️ 網頁一打開就開始遊戲 🎮</p>
-<h2><span data-teams="true">我所添加的程式新功能</span></h2>
-<p><strong>我把程式改成：</strong></p>
-<p><strong>手機可玩</strong> → 除了 click 也支援 touchstart 事件</p>
-<p><strong>圓點顏色固定</strong> → 移除隨機顏色，設定固定顏色（例如 #ff4500）</p>
-<p><br/>以下是我的程式碼:</p>
+<h2>我所添加的程式新功能</h2>
+<p><span style="background-color: #ccffff;"><strong>我把程式改成：</strong></span></p>
+<p><span style="background-color: #ffff00;"><strong>手機可玩</strong></span><span> </span>→ 除了 click 也支援 touchstart 事件</p>
+<p><span style="background-color: #ffff00;"><strong>圓點顏色固定</strong></span><span> </span>→ 移除隨機顏色，設定固定顏色（例如 #ff4500）</p>
+<p><br/><span style="background-color: #ccffff;"><strong>以下是我的程式碼:</strong></span></p>
 <p># --- 遊戲核心邏輯 ---</p>
-<p>def move_target():<br/> """移動目標元素"""<br/> if not game_active:<br/> return<br/> <br/> max_x = game_area.clientWidth - 50<br/> max_y = game_area.clientHeight - 50<br/> min_y = 40</p>
-<p>new_x = random.randint(0, max(0, max_x))<br/> new_y = random.randint(min_y, max(min_y, max_y))<br/> <br/> # 🔹 固定顏色，移除隨機顏色<br/> target.style.backgroundColor = "#ff4500"<br/> <br/> target.style.left = f"{new_x}px"<br/> target.style.top = f"{new_y}px"</p>
-<p># 🔹 同時綁定 click 與 touchstart 事件，手機也可觸發<br/>def hit_target(event):<br/> """點擊或觸碰目標時觸發"""<br/> global score<br/> if not game_active:<br/> return</p>
-<p>score += 1<br/> score_display.text = f"分數: {score}"<br/> move_target()<br/> event.stopPropagation()</p>
+<p>def move_target():<br/>"""移動目標元素"""<br/>if not game_active:<br/>return<br/><br/>max_x = game_area.clientWidth - 50<br/>max_y = game_area.clientHeight - 50<br/>min_y = 40</p>
+<p>new_x = random.randint(0, max(0, max_x))<br/>new_y = random.randint(min_y, max(min_y, max_y))<br/><br/># 🔹 固定顏色，移除隨機顏色<br/>target.style.backgroundColor = "#ff4500"<br/><br/>target.style.left = f"{new_x}px"<br/>target.style.top = f"{new_y}px"</p>
+<p># 🔹 同時綁定 click 與 touchstart 事件，手機也可觸發<br/>def hit_target(event):<br/>"""點擊或觸碰目標時觸發"""<br/>global score<br/>if not game_active:<br/>return</p>
+<p>score += 1<br/>score_display.text = f"分數: {score}"<br/>move_target()<br/>event.stopPropagation()</p>
 <p>target.bind("click", hit_target)<br/>target.bind("touchstart", hit_target) # 🔹 新增手機觸控支援</p>
-<p><br/><strong>修改重點說明：</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>修改重點說明：</strong></span></p>
 <p><span style="background-color: #ffff99;">1.固定顏色</span></p>
 <p><span style="background-color: #ffff99;">target.style.backgroundColor = "#ff4500"</span></p>
 <p><br/><span style="background-color: #ffff99;">2.不再隨機產生 RGB。</span></p>
@@ -916,7 +647,7 @@ pyodide.runPython(code);
 <p><br/><span style="background-color: #ffff99;">手機瀏覽器不一定觸發 click，加入 touchstart 才能觸碰圓點得分。</span></p>
 <p><span style="background-color: #ffff99;">3.原有動畫仍保留</span></p>
 <p><span style="background-color: #ffff99;">圓形移動依舊平滑 (transition)</span></p>
-<p><br/><strong>我再次修改，把遊戲改成手機友善版，包含：</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>我再次修改，把遊戲改成手機友善版，包含：</strong></span></p>
 <p><span style="background-color: #ffff99;">畫面自適應手機寬度（最大 600px，最小 320px）</span></p>
 <p><span style="background-color: #ffff99;">圓點固定顏色</span></p>
 <p><span style="background-color: #ffff99;">手機觸控支援</span></p>
@@ -926,52 +657,52 @@ pyodide.runPython(code);
 <p>max-width: 600px → 桌機不會太大</p>
 <p>min-width: 320px → 手機螢幕最小寬度</p>
 <p># --- 遊戲核心邏輯 ---</p>
-<p>def move_target():<br/> """移動目標元素"""<br/> if not game_active:<br/> return<br/> <br/> max_x = game_area.clientWidth - 50<br/> max_y = game_area.clientHeight - 50<br/> min_y = 40</p>
-<p>new_x = random.randint(0, max(0, max_x))<br/> new_y = random.randint(min_y, max(min_y, max_y))<br/> <br/> # 🔹 固定顏色<br/> target.style.backgroundColor = "#ff4500"<br/> <br/> target.style.left = f"{new_x}px"<br/> target.style.top = f"{new_y}px"</p>
-<p># 🔹 同時綁定 click 與 touchstart，手機可玩<br/>def hit_target(event):<br/> global score<br/> if not game_active:<br/> return</p>
-<p>score += 1<br/> score_display.text = f"分數: {score}"<br/> move_target()<br/> event.stopPropagation()</p>
+<p>def move_target():<br/>"""移動目標元素"""<br/>if not game_active:<br/>return<br/><br/>max_x = game_area.clientWidth - 50<br/>max_y = game_area.clientHeight - 50<br/>min_y = 40</p>
+<p>new_x = random.randint(0, max(0, max_x))<br/>new_y = random.randint(min_y, max(min_y, max_y))<br/><br/># 🔹 固定顏色<br/>target.style.backgroundColor = "#ff4500"<br/><br/>target.style.left = f"{new_x}px"<br/>target.style.top = f"{new_y}px"</p>
+<p># 🔹 同時綁定 click 與 touchstart，手機可玩<br/>def hit_target(event):<br/>global score<br/>if not game_active:<br/>return</p>
+<p>score += 1<br/>score_display.text = f"分數: {score}"<br/>move_target()<br/>event.stopPropagation()</p>
 <p>target.bind("click", hit_target)<br/>target.bind("touchstart", hit_target) # 🔹 手機觸控支援</p>
 <p>🔹 額外建議：畫面適應性</p>
 <p>若希望圓形大小也隨螢幕寬度自動縮放：</p>
 <p>target_size = min(50, game_area.clientWidth * 0.1)<br/>target.style.width = f"{target_size}px"<br/>target.style.height = f"{target_size}px"</p>
 <p><br/>手機螢幕小時，圓形會自動縮小到 10% 的畫面寬度</p>
 <p>桌機維持最大 50px</p>
-<p><br/><strong>修改後效果：</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>修改後效果：</strong></span></p>
 <p><span style="background-color: #ffff99;">手機與平板都可以觸碰圓點得分</span></p>
 <p><span style="background-color: #ffff99;">圓點顏色固定，遊戲更穩定</span></p>
 <p><span style="background-color: #ffff99;">手機自適應寬度，遊戲畫面不會超出螢幕</span></p>
-<p><br/><strong>最後整合:</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>最後整合:</strong></span></p>
 <p>{% extends "base.html" %}</p>
 <p>{% block title %}Brython 遊戲{% endblock %}</p>
-<p>{% block content %}<br/> &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt;<br/> &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython_stdlib.js"&gt;&lt;/script&gt;<br/> <br/> &lt;body onload="brython(1)"&gt;</p>
+<p>{% block content %}<br/>&lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython_stdlib.js"&gt;&lt;/script&gt;<br/><br/>&lt;body onload="brython(1)"&gt;</p>
 <p>&lt;h2 style="text-align: center;"&gt;🕹️ 點擊測試：點擊移動中的圓形！&lt;/h2&gt;</p>
-<p>&lt;div id="brython_div1" style="width: 100%; max-width: 600px; min-width: 320px; height: 400px; margin: 20px auto;"&gt;<br/> &lt;/div&gt;</p>
-<p>{% raw %} <br/> &lt;script type="text/python"&gt;<br/> from browser import document, timer, window, ajax<br/> import random<br/> import time</p>
-<p># --- 遊戲設定 ---<br/> GAME_DURATION = 30 <br/> score = 0<br/> game_active = False</p>
-<p># --- 獲取 DOM 元素及初始化 ---<br/> game_area = document["brython_div1"]<br/> game_area.style.border = "3px solid #333"<br/> game_area.style.backgroundColor = "#e0e0ff"<br/> game_area.style.position = "relative"<br/> game_area.style.overflow = "hidden"<br/> game_area.style.cursor = "crosshair"</p>
-<p># 分數與時間顯示<br/> score_display = document.createElement("div")<br/> score_display.style.position = "absolute"<br/> score_display.style.top = "10px"<br/> score_display.style.left = "10px"<br/> score_display.style.fontSize = "1.2em"<br/> score_display.style.fontWeight = "bold"<br/> score_display.style.backgroundColor = "rgba(255, 255, 255, 0.7)"<br/> score_display.style.padding = "5px"<br/> game_area &lt;= score_display</p>
-<p>timer_display = document.createElement("div")<br/> timer_display.style.position = "absolute"<br/> timer_display.style.top = "10px"<br/> timer_display.style.right = "10px"<br/> timer_display.style.fontSize = "1.2em"<br/> timer_display.style.fontWeight = "bold"<br/> timer_display.style.backgroundColor = "rgba(255, 255, 255, 0.7)"<br/> timer_display.style.padding = "5px"<br/> game_area &lt;= timer_display</p>
-<p># 創建目標圓點<br/> target = document.createElement("div")<br/> target.id = "target"<br/> target.style.width = "50px"<br/> target.style.height = "50px"<br/> target.style.backgroundColor = "#ff4500" # 🔹 固定顏色<br/> target.style.position = "absolute"<br/> target.style.borderRadius = "50%"<br/> target.style.cursor = "pointer"<br/> target.style.transition = "background-color 0.1s, top 0.3s, left 0.3s"<br/> game_area &lt;= target</p>
-<p># 遊戲結束訊息<br/> game_over_msg = document.createElement("div")<br/> game_over_msg.style.position = "absolute"<br/> game_over_msg.style.top = "50%"<br/> game_over_msg.style.left = "50%"<br/> game_over_msg.style.transform = "translate(-50%, -50%)"<br/> game_over_msg.style.backgroundColor = "rgba(0, 0, 0, 0.9)"<br/> game_over_msg.style.color = "white"<br/> game_over_msg.style.padding = "30px"<br/> game_over_msg.style.borderRadius = "10px"<br/> game_over_msg.style.fontSize = "2em"<br/> game_over_msg.style.zIndex = "100"<br/> game_over_msg.style.display = "none"<br/> game_over_msg.style.textAlign = "center"<br/> game_area &lt;= game_over_msg</p>
-<p># --- 遊戲核心邏輯 ---<br/> def move_target():<br/> if not game_active:<br/> return<br/> <br/> max_x = game_area.clientWidth - 50<br/> max_y = game_area.clientHeight - 50<br/> min_y = 40</p>
-<p>new_x = random.randint(0, max(0, max_x))<br/> new_y = random.randint(min_y, max(min_y, max_y))<br/> <br/> target.style.left = f"{new_x}px"<br/> target.style.top = f"{new_y}px"<br/> # 🔹 顏色固定，不再隨機<br/> target.style.backgroundColor = "#ff4500"</p>
-<p># 🔹 點擊或觸碰都能得分（手機可玩）<br/> def hit_target(event):<br/> global score<br/> if not game_active:<br/> return</p>
-<p>score += 1<br/> score_display.text = f"分數: {score}"<br/> move_target()<br/> event.stopPropagation()</p>
-<p>target.bind("click", hit_target)<br/> target.bind("touchstart", hit_target) # 🔹 手機觸控</p>
-<p>def submit_score_to_server(final_score):<br/> def on_complete(req):<br/> if req.status == 200:<br/> window.alert("分數成功上傳至英雄榜！")<br/> else:<br/> try:<br/> resp = window.JSON.parse(req.text)<br/> msg = resp.message<br/> except:<br/> msg = "請檢查登入狀態或伺服器狀態，或確保您已登入。"<br/> window.alert(f"分數上傳失敗 ({req.status})！{msg}")<br/> <br/> req = ajax.ajax()<br/> req.bind('complete', on_complete)<br/> <br/> {% endraw %}<br/> req.open('POST', '{{ url_for("submit_score") }}', True)<br/> {% raw %}<br/> <br/> req.set_header('Content-Type', 'application/json')<br/> data = {'score': final_score}<br/> json_payload = window.JSON.stringify(data)<br/> req.send(json_payload)</p>
-<p>def restart_game(event):<br/> game_over_msg.style.display = "none"<br/> start_game()<br/> event.stopPropagation()</p>
-<p>def check_time():<br/> global game_active<br/> remaining = int(game_over_time - time.time())<br/> <br/> if remaining &lt;= 0:<br/> timer_display.text = "時間: 0s"<br/> if game_active:<br/> game_active = False<br/> submit_score_to_server(score)<br/> game_over_msg.innerHTML = f"遊戲結束！&lt;br&gt;最終分數: {score}"<br/> <br/> restart_btn = document.createElement("button")<br/> restart_btn.text = "重新開始"<br/> restart_btn.style.marginTop = "15px"<br/> restart_btn.style.padding = "10px 20px"<br/> restart_btn.style.fontSize = "0.7em"<br/> restart_btn.style.cursor = "pointer"<br/> restart_btn.bind("click", restart_game)<br/> <br/> game_over_msg &lt;= document.createElement("br")<br/> game_over_msg &lt;= restart_btn<br/> game_over_msg.style.display = "block"<br/> <br/> timer.clear_interval(move_interval_handle)<br/> else:<br/> timer_display.text = f"時間: {remaining}s"<br/> timer.set_timeout(check_time, 1000)</p>
-<p># --- 遊戲啟動 ---<br/> def start_game():<br/> global game_active, game_over_time, move_interval_handle, score<br/> score = 0<br/> game_active = True<br/> score_display.text = "分數: 0"<br/> timer_display.text = f"時間: {GAME_DURATION}s"<br/> <br/> game_over_time = time.time() + GAME_DURATION<br/> <br/> check_time()<br/> move_target()<br/> move_interval_handle = timer.set_interval(move_target, 800)</p>
-<p># 啟動遊戲<br/> start_game()</p>
-<p>&lt;/script&gt;<br/> {% endraw %}<br/> <br/> &lt;/body&gt;<br/>{% endblock %}</p>
-<p><br/><strong>修改重點總結：</strong></p>
+<p>&lt;div id="brython_div1" style="width: 100%; max-width: 600px; min-width: 320px; height: 400px; margin: 20px auto;"&gt;<br/>&lt;/div&gt;</p>
+<p>{% raw %}<br/>&lt;script type="text/python"&gt;<br/>from browser import document, timer, window, ajax<br/>import random<br/>import time</p>
+<p># --- 遊戲設定 ---<br/>GAME_DURATION = 30<br/>score = 0<br/>game_active = False</p>
+<p># --- 獲取 DOM 元素及初始化 ---<br/>game_area = document["brython_div1"]<br/>game_area.style.border = "3px solid #333"<br/>game_area.style.backgroundColor = "#e0e0ff"<br/>game_area.style.position = "relative"<br/>game_area.style.overflow = "hidden"<br/>game_area.style.cursor = "crosshair"</p>
+<p># 分數與時間顯示<br/>score_display = document.createElement("div")<br/>score_display.style.position = "absolute"<br/>score_display.style.top = "10px"<br/>score_display.style.left = "10px"<br/>score_display.style.fontSize = "1.2em"<br/>score_display.style.fontWeight = "bold"<br/>score_display.style.backgroundColor = "rgba(255, 255, 255, 0.7)"<br/>score_display.style.padding = "5px"<br/>game_area &lt;= score_display</p>
+<p>timer_display = document.createElement("div")<br/>timer_display.style.position = "absolute"<br/>timer_display.style.top = "10px"<br/>timer_display.style.right = "10px"<br/>timer_display.style.fontSize = "1.2em"<br/>timer_display.style.fontWeight = "bold"<br/>timer_display.style.backgroundColor = "rgba(255, 255, 255, 0.7)"<br/>timer_display.style.padding = "5px"<br/>game_area &lt;= timer_display</p>
+<p># 創建目標圓點<br/>target = document.createElement("div")<br/>target.id = "target"<br/>target.style.width = "50px"<br/>target.style.height = "50px"<br/>target.style.backgroundColor = "#ff4500" # 🔹 固定顏色<br/>target.style.position = "absolute"<br/>target.style.borderRadius = "50%"<br/>target.style.cursor = "pointer"<br/>target.style.transition = "background-color 0.1s, top 0.3s, left 0.3s"<br/>game_area &lt;= target</p>
+<p># 遊戲結束訊息<br/>game_over_msg = document.createElement("div")<br/>game_over_msg.style.position = "absolute"<br/>game_over_msg.style.top = "50%"<br/>game_over_msg.style.left = "50%"<br/>game_over_msg.style.transform = "translate(-50%, -50%)"<br/>game_over_msg.style.backgroundColor = "rgba(0, 0, 0, 0.9)"<br/>game_over_msg.style.color = "white"<br/>game_over_msg.style.padding = "30px"<br/>game_over_msg.style.borderRadius = "10px"<br/>game_over_msg.style.fontSize = "2em"<br/>game_over_msg.style.zIndex = "100"<br/>game_over_msg.style.display = "none"<br/>game_over_msg.style.textAlign = "center"<br/>game_area &lt;= game_over_msg</p>
+<p># --- 遊戲核心邏輯 ---<br/>def move_target():<br/>if not game_active:<br/>return<br/><br/>max_x = game_area.clientWidth - 50<br/>max_y = game_area.clientHeight - 50<br/>min_y = 40</p>
+<p>new_x = random.randint(0, max(0, max_x))<br/>new_y = random.randint(min_y, max(min_y, max_y))<br/><br/>target.style.left = f"{new_x}px"<br/>target.style.top = f"{new_y}px"<br/># 🔹 顏色固定，不再隨機<br/>target.style.backgroundColor = "#ff4500"</p>
+<p># 🔹 點擊或觸碰都能得分（手機可玩）<br/>def hit_target(event):<br/>global score<br/>if not game_active:<br/>return</p>
+<p>score += 1<br/>score_display.text = f"分數: {score}"<br/>move_target()<br/>event.stopPropagation()</p>
+<p>target.bind("click", hit_target)<br/>target.bind("touchstart", hit_target) # 🔹 手機觸控</p>
+<p>def submit_score_to_server(final_score):<br/>def on_complete(req):<br/>if req.status == 200:<br/>window.alert("分數成功上傳至英雄榜！")<br/>else:<br/>try:<br/>resp = window.JSON.parse(req.text)<br/>msg = resp.message<br/>except:<br/>msg = "請檢查登入狀態或伺服器狀態，或確保您已登入。"<br/>window.alert(f"分數上傳失敗 ({req.status})！{msg}")<br/><br/>req = ajax.ajax()<br/>req.bind('complete', on_complete)<br/><br/>{% endraw %}<br/>req.open('POST', '{{ url_for("submit_score") }}', True)<br/>{% raw %}<br/><br/>req.set_header('Content-Type', 'application/json')<br/>data = {'score': final_score}<br/>json_payload = window.JSON.stringify(data)<br/>req.send(json_payload)</p>
+<p>def restart_game(event):<br/>game_over_msg.style.display = "none"<br/>start_game()<br/>event.stopPropagation()</p>
+<p>def check_time():<br/>global game_active<br/>remaining = int(game_over_time - time.time())<br/><br/>if remaining &lt;= 0:<br/>timer_display.text = "時間: 0s"<br/>if game_active:<br/>game_active = False<br/>submit_score_to_server(score)<br/>game_over_msg.innerHTML = f"遊戲結束！&lt;br&gt;最終分數: {score}"<br/><br/>restart_btn = document.createElement("button")<br/>restart_btn.text = "重新開始"<br/>restart_btn.style.marginTop = "15px"<br/>restart_btn.style.padding = "10px 20px"<br/>restart_btn.style.fontSize = "0.7em"<br/>restart_btn.style.cursor = "pointer"<br/>restart_btn.bind("click", restart_game)<br/><br/>game_over_msg &lt;= document.createElement("br")<br/>game_over_msg &lt;= restart_btn<br/>game_over_msg.style.display = "block"<br/><br/>timer.clear_interval(move_interval_handle)<br/>else:<br/>timer_display.text = f"時間: {remaining}s"<br/>timer.set_timeout(check_time, 1000)</p>
+<p># --- 遊戲啟動 ---<br/>def start_game():<br/>global game_active, game_over_time, move_interval_handle, score<br/>score = 0<br/>game_active = True<br/>score_display.text = "分數: 0"<br/>timer_display.text = f"時間: {GAME_DURATION}s"<br/><br/>game_over_time = time.time() + GAME_DURATION<br/><br/>check_time()<br/>move_target()<br/>move_interval_handle = timer.set_interval(move_target, 800)</p>
+<p># 啟動遊戲<br/>start_game()</p>
+<p>&lt;/script&gt;<br/>{% endraw %}<br/><br/>&lt;/body&gt;<br/>{% endblock %}</p>
+<p><br/><span style="background-color: #ccffff;"><strong>修改重點總結：</strong></span></p>
 <p><span style="background-color: #ffff99;">手機自適應畫面：</span></p>
 <p><span style="background-color: #ffff99;">width: 100%; max-width: 600px; min-width: 320px;</span></p>
 <p><br/><span style="background-color: #ffff99;">固定圓點顏色：</span></p>
 <p><span style="background-color: #ffff99;">target.style.backgroundColor = "#ff4500"</span></p>
 <p><br/><span style="background-color: #ffff99;">手機觸控支援：</span></p>
 <p><span style="background-color: #ffff99;">target.bind("touchstart", hit_target)</span></p>
-<p><br/><strong>這個版本：</strong></p>
+<p><br/><span style="background-color: #ccffff;"><strong>這個版本：</strong></span></p>
 <p>手機和平板都能正常點擊 / 觸碰圓點</p>
 <p>畫面自動縮放，不會超出手機螢幕</p>
 <p>顏色固定，遊戲更穩定</p>
