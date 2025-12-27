@@ -291,15 +291,88 @@ draw_robot()</pre>
 </div>
 <h2><strong><span>w7</span></strong></h2>
 <p><strong>Brython 是什麼？如何在瀏覽器配置 Brython 環境？ Brython 能做什麼？</strong></p>
-<p>A1.<a href="https://brython.info/">Brython</a> 是一個將 <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> 語法編譯為 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript">JavaScript</a> 的工具，能直接在瀏覽器中以 <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> 撰寫前端網頁程式。</p>
-<p>A2.</p>
-<p>A3.</p>
-<h2><strong><span>w10</span></strong></h2>
-<p><strong><span>如何在瀏覽器中模擬機器人作動？</span></strong></p>
-<p><strong><span></span></strong></p>
-<h2><strong><span>w14</span></strong></h2>
-<p><strong><span>在瀏覽器中模擬機器人作動的目的是什麼？</span></strong></p>
-<p><strong><span></span></strong></p>
+<p><span style="background-color: #ccffff;"><strong>一、Brython 是什麼？</strong></span></p>
+<p>Brython = Browser Python（瀏覽器中的 Python）</p>
+<p>👉 它是一個 JavaScript 函式庫，讓你可以：</p>
+<p>在 瀏覽器裡直接寫 Python</p>
+<p>用 Python 操作 HTML / CSS / DOM</p>
+<p>不用後端、不用安裝 Python</p>
+<p>開啟網頁就能跑</p>
+<p>📌 本質：</p>
+<p>Python 語法</p>
+<p>在瀏覽器中 轉成 JavaScript 執行</p>
+<p>為什麼會有 Brython？</p>
+<p>因為：</p>
+<p>瀏覽器只懂 JavaScript</p>
+<p>但很多人更熟 Python</p>
+<p>Brython 幫你把 Python「翻譯」成瀏覽器能跑的程式</p>
+<p>Brython 跟其他東西的比較<br/>技術 在哪跑 用途<br/>Python 電腦 / 伺服器 後端、資料分析<br/>JavaScript 瀏覽器 網頁互動<br/>Brython 瀏覽器 用 Python 寫前端<br/>Flask / Django 伺服器 網站後端</p>
+<p>📌 Brython 是前端，不是後端</p>
+<p><span style="background-color: #ccffff;"><strong>如何在瀏覽器配置 Brython 環境</strong></span><br/>✅ 最簡單（只要一個 HTML）<br/>&lt;!DOCTYPE html&gt;<br/>&lt;html&gt;<br/>&lt;head&gt;<br/>&lt;meta charset="utf-8"&gt;<br/>&lt;title&gt;Brython Demo&lt;/title&gt;</p>
+<p>&lt;!-- 載入 Brython --&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;/head&gt;</p>
+<p>&lt;body onload="brython()"&gt;</p>
+<p>&lt;h1 id="title"&gt;Hello&lt;/h1&gt;</p>
+<p>&lt;script type="text/python"&gt;<br/>from browser import document</p>
+<p>document["title"].text = "Hello Brython!"<br/>&lt;/script&gt;</p>
+<p>&lt;/body&gt;<br/>&lt;/html&gt;</p>
+<p><br/>📌 重點只有 4 個：</p>
+<p>1️⃣ 載入 brython.min.js<br/>2️⃣ &lt;body onload="brython()"&gt;<br/>3️⃣ &lt;script type="text/python"&gt;<br/>4️⃣ from browser import document</p>
+<p>打開這個 HTML，不用伺服器，直接能跑</p>
+<p>✅ 進階：外部 Python 檔案<br/>&lt;script type="text/python" src="main.py"&gt;&lt;/script&gt;</p>
+<p># main.py<br/>from browser import document</p>
+<p>document &lt;= "Brython is cool!"</p>
+<p><br/>📌 非常適合：</p>
+<p>遊戲</p>
+<p>專案結構化</p>
+<p>GitHub Pages</p>
+<p><span style="background-color: #ccffff;"><strong>Brython 能做什麼？</strong></span><br/>1️⃣ 操作網頁（DOM）<br/>from browser import document</p>
+<p>document["btn"].bind("click", lambda e: alert("Clicked!"))</p>
+<p><br/>你可以：</p>
+<p>改文字</p>
+<p>改顏色</p>
+<p>處理按鈕事件</p>
+<p>2️⃣ 取代 JavaScript（用 Python 寫前端）<br/>JavaScript Brython<br/>document.getElementById() document["id"]<br/>addEventListener bind()<br/>innerHTML .html</p>
+<p>📌 非常適合「會 Python、不想寫 JS」的人</p>
+<p>3️⃣ 做遊戲（你最近在做的）</p>
+<p>Brython 很適合：</p>
+<p>🎯 Aim Lab 類型遊戲</p>
+<p>🟦 點擊反應遊戲</p>
+<p>🕹 Canvas 遊戲</p>
+<p>🧪 教學用互動模擬</p>
+<p>你已經用到的功能包括：</p>
+<p>計時器</p>
+<p>滑鼠事件</p>
+<p>隨機生成目標</p>
+<p>計分系統</p>
+<p>4️⃣ 教學與作業展示（GitHub Pages）</p>
+<p>📌 很多老師喜歡 Brython，因為：</p>
+<p>不用安裝環境</p>
+<p>一個 HTML 就能交</p>
+<p>GitHub Pages 直接展示</p>
+<p>適合「程式 + 說明」</p>
+<p>5️⃣ 學習前端邏輯（不被 JS 卡住）</p>
+<p>Brython 讓你專注在：</p>
+<p>事件</p>
+<p>狀態</p>
+<p>邏輯</p>
+<p>遊戲設計</p>
+<p>而不是 JS 語法細節</p>
+<p>Brython 的限制</p>
+<p>⚠️ Brython 不是萬能</p>
+<p>❌ 不適合</p>
+<p>後端伺服器</p>
+<p>資料庫</p>
+<p>高效能大型遊戲</p>
+<p>AI / ML 運算</p>
+<p>⚠️ 注意</p>
+<p>效能 &lt; 原生 JavaScript</p>
+<p>部分 Python 套件不能用</p>
+<p>依賴 CDN（離線需額外設定）</p>
+<p>什麼情況「非常適合」用 Brython？</p>
+<p>✅ 你是 Python 使用者<br/>✅ 想做 網頁互動 / 小遊戲<br/>✅ 要交作業、展示成果<br/>✅ 用 GitHub Pages<br/>✅ 教學、Demo、Prototype</p>
+<p>➡️ Brython = 最佳選擇</p>
+<p><span style="background-color: #ccffff;"><strong>總結:</strong></span></p>
+<p>Brython 就是：用 Python 在瀏覽器寫前端程式</p>
 <h1>w11</h1>
 <h2>如何建立團體github網站</h2>
 <h3>一般作法</h3>
@@ -646,4 +719,57 @@ draw_robot()</pre>
 <p>end_time = time.time() + GAME_DURATION<br/>update_hud()<br/>spawn_target()<br/>check_time()</p>
 <p>start_game()<br/>&lt;/script&gt;<br/>{% endraw %}</p>
 <p>&lt;/body&gt;<br/>{% endblock %}</p>
-<p></p>
+<h3><span style="background-color: #ffff00;">Aim Lab版本整合成完整的、修整過的版本，加入...</span></h3>
+<p><span style="background-color: #ccffff;">圓點顏色</span>：亮天藍 #00aaff</p>
+<p><span style="background-color: #ccffff;">命中閃爍效果</span></p>
+<p><span style="background-color: #ccffff;">Miss 點擊紅色閃爍效果</span></p>
+<p>保留分數、命中率、平均反應時間</p>
+<p>{% extends "base.html" %}</p>
+<p>{% block title %}Aim Lab - Precision Training{% endblock %}</p>
+<p>{% block content %}<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython_stdlib.js"&gt;&lt;/script&gt;</p>
+<p>&lt;body onload="brython(1)"&gt;</p>
+<p>&lt;h2 style="text-align:center;color:white;"&gt;<br/>🎯 Aim Lab – Precision Training<br/>&lt;/h2&gt;</p>
+<p>&lt;div id="brython_div1"&gt;&lt;/div&gt;</p>
+<p>{% raw %}<br/>&lt;script type="text/python"&gt;<br/>from browser import document, timer, window, ajax<br/>import random, time</p>
+<p># =============================<br/># 設定<br/># =============================<br/>GAME_DURATION = 30<br/>TARGET_SIZE = 50</p>
+<p>score = 0<br/>shots = 0<br/>game_active = False<br/>spawn_time = 0<br/>reaction_times = []</p>
+<p># =============================<br/># 遊戲場地<br/># =============================<br/>game_area = document["brython_div1"]<br/>game_area.style.width = "700px"<br/>game_area.style.height = "450px"<br/>game_area.style.margin = "20px auto"<br/>game_area.style.border = "2px solid #555"<br/>game_area.style.backgroundColor = "#111"<br/>game_area.style.position = "relative"<br/>game_area.style.cursor = "crosshair"<br/>game_area.style.overflow = "hidden"</p>
+<p># =============================<br/># HUD 顯示<br/># =============================<br/>hud = document.createElement("div")<br/>hud.style.position = "absolute"<br/>hud.style.top = "10px"<br/>hud.style.left = "10px"<br/>hud.style.color = "#0f0"<br/>hud.style.fontFamily = "monospace"<br/>hud.style.fontSize = "1.1em"<br/>game_area &lt;= hud</p>
+<p>timer_display = document.createElement("div")<br/>timer_display.style.position = "absolute"<br/>timer_display.style.top = "10px"<br/>timer_display.style.right = "10px"<br/>timer_display.style.color = "#0f0"<br/>timer_display.style.fontFamily = "monospace"<br/>timer_display.style.fontSize = "1.1em"<br/>game_area &lt;= timer_display</p>
+<p># =============================<br/># 目標圓點<br/># =============================<br/>target = document.createElement("div")<br/>target.style.width = f"{TARGET_SIZE}px"<br/>target.style.height = f"{TARGET_SIZE}px"<br/>target.style.borderRadius = "50%"<br/>target.style.backgroundColor = "#00aaff" # 亮天藍<br/>target.style.position = "absolute"<br/>target.style.display = "none"<br/>game_area &lt;= target</p>
+<p># =============================<br/># 核心邏輯<br/># =============================<br/>def spawn_target():<br/>global spawn_time<br/>max_x = game_area.clientWidth - TARGET_SIZE<br/>max_y = game_area.clientHeight - TARGET_SIZE</p>
+<p>x = random.randint(0, max_x)<br/>y = random.randint(40, max_y)</p>
+<p>target.style.left = f"{x}px"<br/>target.style.top = f"{y}px"<br/>target.style.display = "block"</p>
+<p>spawn_time = time.time()</p>
+<p># --- 命中事件 ---<br/>@target.bind("click")<br/>def hit(event):<br/>global score, shots</p>
+<p>if not game_active:<br/>return</p>
+<p>score += 1<br/>shots += 1</p>
+<p>reaction = time.time() - spawn_time<br/>reaction_times.append(reaction)</p>
+<p># 命中閃白效果<br/>target.style.backgroundColor = "#ffffff"<br/>def restore_color():<br/>target.style.backgroundColor = "#00aaff"<br/>timer.set_timeout(restore_color, 100)</p>
+<p>target.style.display = "none"<br/>spawn_target()</p>
+<p>update_hud()<br/>event.stopPropagation()</p>
+<p># --- Miss 點擊事件 ---<br/>@game_area.bind("click")<br/>def miss(event):<br/>global shots<br/>if not game_active:<br/>return</p>
+<p>shots += 1<br/># Miss 閃紅<br/>original_color = game_area.style.backgroundColor<br/>game_area.style.backgroundColor = "#440000"<br/>def restore_bg():<br/>game_area.style.backgroundColor = original_color<br/>timer.set_timeout(restore_bg, 100)</p>
+<p>update_hud()</p>
+<p>def update_hud():<br/>accuracy = (score / shots * 100) if shots else 0<br/>avg_reaction = (sum(reaction_times) / len(reaction_times)) if reaction_times else 0<br/>hud.text = (<br/>f"Hits: {score} "<br/>f"Shots: {shots} "<br/>f"Accuracy: {accuracy:.1f}% "<br/>f"Avg RT: {avg_reaction*1000:.0f}ms"<br/>)</p>
+<p># =============================<br/># 計時<br/># =============================<br/>def check_time():<br/>global game_active<br/>remain = int(end_time - time.time())</p>
+<p>if remain &lt;= 0:<br/>game_active = False<br/>target.style.display = "none"<br/>timer_display.text = "TIME UP"<br/>submit_score()<br/>return</p>
+<p>timer_display.text = f"{remain}s"<br/>timer.set_timeout(check_time, 1000)</p>
+<p># =============================<br/># 上傳分數<br/># =============================<br/>def submit_score():<br/>data = {<br/>"score": score,<br/>"shots": shots,<br/>"accuracy": score / shots if shots else 0<br/>}</p>
+<p>req = ajax.ajax()<br/>req.open("POST", "{{ url_for('submit_score') }}", True)<br/>req.set_header("Content-Type", "application/json")<br/>req.send(window.JSON.stringify(data))</p>
+<p># =============================<br/># 開始遊戲<br/># =============================<br/>def start_game():<br/>global score, shots, reaction_times, end_time, game_active</p>
+<p>score = 0<br/>shots = 0<br/>reaction_times = []<br/>game_active = True</p>
+<p>end_time = time.time() + GAME_DURATION<br/>update_hud()<br/>spawn_target()<br/>check_time()</p>
+<p>start_game()<br/>&lt;/script&gt;<br/>{% endraw %}</p>
+<p>&lt;/body&gt;<br/>{% endblock %}</p>
+<p><span style="background-color: #ffff00;"><strong>🔹 改進說明</strong></span></p>
+<p>圓點顏色固定亮天藍：#00aaff</p>
+<p>命中閃白：命中瞬間變白，0.1 秒後回亮天藍</p>
+<p>Miss 閃紅：點擊空白背景時背景變暗紅，0.1 秒後恢復</p>
+<p>HUD 顯示：</p>
+<p>Hits（命中次數）</p>
+<p>Shots（射擊次數）</p>
+<p>Accuracy（命中率）</p>
+<p>Avg RT（平均反應時間毫秒）</p>
+<p>計時器：30 秒倒數</p>
+<p>Ajax 上傳分數：遊戲結束自動提交</p>

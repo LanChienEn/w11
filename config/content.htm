@@ -670,18 +670,16 @@ draw_robot()</pre>
 <p>每 0.8 秒移動一次圓形</p>
 <p><br/>start_game()<br/>➡️ 網頁一打開就開始遊戲 🎮</p>
 <h2>我所添加的程式新功能</h2>
-<h3><span style="background-color: #ffff00;"><strong>改成 Aim Lab 風格</strong></span></h3>
-<p></p>
+<p><span style="background-color: #ffff00;"><strong>改成 Aim Lab 風格</strong></span></p>
 <p><strong>Aim Lab 風格的重點項目說明</strong><br/><br/>深色背景 專注、低干擾<br/>單一目標 一次只出現一個圓<br/>快速生成 點中立刻生成新目標<br/>固定顏色 通常是亮色（紅 / 綠）<br/>命中回饋 命中變色 / 閃爍<br/>統計數據 命中數、命中率、反應時間<br/>訓練感 不是「遊戲」，是「練準度」<br/>二、你原本程式 → Aim Lab 風格的修改重點</p>
-<h3>主要改動</h3>
+<p><strong>主要改動</strong></p>
 <p>背景改深色</p>
 <p>移除自動移動</p>
 <p>點中才生成新目標</p>
 <p>記錄反應時間</p>
 <p>顯示 Accuracy（命中率）</p>
 <p>簡化動畫（快、乾脆）</p>
-<h3>以下是原程式為基底的完整改寫版</h3>
-<p>✅ Aim Lab Style Brython Game（Flask + Jinja2）</p>
+<p><strong>以下是原程式為基底的完整改寫版</strong></p>
 <p>{% extends "base.html" %}</p>
 <p>{% block title %}Aim Lab - Precision Training{% endblock %}</p>
 <p>{% block content %}<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython_stdlib.js"&gt;&lt;/script&gt;</p>
@@ -719,10 +717,10 @@ draw_robot()</pre>
 <p>end_time = time.time() + GAME_DURATION<br/>update_hud()<br/>spawn_target()<br/>check_time()</p>
 <p>start_game()<br/>&lt;/script&gt;<br/>{% endraw %}</p>
 <p>&lt;/body&gt;<br/>{% endblock %}</p>
-<h3><span style="background-color: #ffff00;">Aim Lab版本整合成完整的、修整過的版本，加入...</span></h3>
-<p>圓點顏色：亮天藍 #00aaff</p>
-<p>命中閃爍效果</p>
-<p>Miss 點擊紅色閃爍效果</p>
+<p><strong><span style="background-color: #ffff00;">Aim Lab版本整合成完整的、修整過的版本，加入...</span></strong></p>
+<p><span style="background-color: #ccffff;">圓點顏色</span>：亮天藍 #00aaff</p>
+<p><span style="background-color: #ccffff;">命中閃爍效果</span></p>
+<p><span style="background-color: #ccffff;">Miss 點擊紅色閃爍效果</span></p>
 <p>保留分數、命中率、平均反應時間</p>
 <p>{% extends "base.html" %}</p>
 <p>{% block title %}Aim Lab - Precision Training{% endblock %}</p>
