@@ -286,7 +286,7 @@ draw_robot()</pre>
 </div>
 </div>
 <div>
-<h4>總結:</h4>
+<h2>w3 心得總結</h2>
 <p>Git 與 GitHub 提供完整的版本控制、團隊協作、問題追蹤、程式碼審查與備份機制，讓開發流程更有條理，大幅提升開發效率與品質。不論團隊或個人開發，都能享有回溯、備份、管理等多重好處。</p>
 </div>
 <h2><strong><span>w7</span></strong></h2>
@@ -371,8 +371,8 @@ draw_robot()</pre>
 <p>什麼情況「非常適合」用 Brython？</p>
 <p>✅ 你是 Python 使用者<br/>✅ 想做 網頁互動 / 小遊戲<br/>✅ 要交作業、展示成果<br/>✅ 用 GitHub Pages<br/>✅ 教學、Demo、Prototype</p>
 <p>➡️ Brython = 最佳選擇</p>
-<p><span style="background-color: #ccffff;"><strong>總結:</strong></span></p>
-<p>Brython 就是：用 Python 在瀏覽器寫前端程式</p>
+<h2><strong>w7 心得總結</strong></h2>
+<p>Brython是一種讓 Python 程式碼能直接在瀏覽器中執行的技術，透過 JavaScript 函式庫將 Python 轉換為瀏覽器可執行的形式。使用 Brython 不需要額外安裝環境，只要在 HTML 中引入相關檔案，即可撰寫 Python 程式來操作網頁內容。Brython 可用於控制 HTML 元素、處理事件、製作互動式網頁與小型遊戲，對熟悉 Python 的學習者而言，能降低前端開發的學習門檻。雖然 Brython 在效能與應用範圍上不如原生 JavaScript，且不適合後端系統開發，但在教學、作業展示、GitHub Pages 與原型設計等方面具有高度實用性，是結合 Python 與網頁互動的良好工具。</p>
 <h1>w11</h1>
 <h2>如何建立團體github網站</h2>
 <h3>一般作法</h3>
@@ -477,7 +477,7 @@ draw_robot()</pre>
 <p><br/>（反方向同步，用來備份）</p>
 <p>✅ 一句話總結（你可以記這句）</p>
 <p>把「個人 repo」當來源，用 fetch + merge 合併到「Classroom repo」一次，之後只用 Classroom。</p>
-<h3><strong>後來大家都要編輯需要中止同步</strong></h3>
+<h4><strong>後來大家都要編輯需要中止同步</strong></h4>
 <p><strong>我:</strong></p>
 <p>我現在想要把我倉儲的跟我個人的倉儲都獨立成個體(取消我個人網站是主要，分組網站是備份)該怎麼做?</p>
 <p><strong>AI:</strong></p>
@@ -511,8 +511,7 @@ draw_robot()</pre>
 <p><br/>git remote -v<br/>看到 一個 origin</p>
 <p>URL 正確</p>
 <p>就是「獨立乾淨狀態」✔️</p>
-<p><strong></strong></p>
-<h3><strong>以後只要小組成員要編輯</strong></h3>
+<h4><strong>以後只要小組成員要編輯</strong></h4>
 <p><strong>1.就在團體倉儲<span style="background-color: #ffff99;">開 Codespaces 進到 fluffy sniffle</span><span> </span>這個專案裡。</strong></p>
 <p><strong>2.在<span> </span><span style="background-color: #ffff99;">init_replit 裡輸入pip install flask flask_cors bs4 lxml pelican markdown gevent</span></strong></p>
 <p><strong>3.執行後<span style="background-color: #ffff99;">再輸入 python main.py&amp;</span></strong></p>
@@ -670,18 +669,16 @@ draw_robot()</pre>
 <p>每 0.8 秒移動一次圓形</p>
 <p><br/>start_game()<br/>➡️ 網頁一打開就開始遊戲 🎮</p>
 <h2>我所添加的程式新功能</h2>
-<h3><span style="background-color: #ffff00;"><strong>改成 Aim Lab 風格</strong></span></h3>
-<p></p>
+<p><span style="background-color: #ffff00;"><strong>改成 Aim Lab 風格</strong></span></p>
 <p><strong>Aim Lab 風格的重點項目說明</strong><br/><br/>深色背景 專注、低干擾<br/>單一目標 一次只出現一個圓<br/>快速生成 點中立刻生成新目標<br/>固定顏色 通常是亮色（紅 / 綠）<br/>命中回饋 命中變色 / 閃爍<br/>統計數據 命中數、命中率、反應時間<br/>訓練感 不是「遊戲」，是「練準度」<br/>二、你原本程式 → Aim Lab 風格的修改重點</p>
-<h3>主要改動</h3>
+<p><strong>主要改動</strong></p>
 <p>背景改深色</p>
 <p>移除自動移動</p>
 <p>點中才生成新目標</p>
 <p>記錄反應時間</p>
 <p>顯示 Accuracy（命中率）</p>
 <p>簡化動畫（快、乾脆）</p>
-<h3>以下是原程式為基底的完整改寫版</h3>
-<p>✅ Aim Lab Style Brython Game（Flask + Jinja2）</p>
+<p><strong>以下是原程式為基底的完整改寫版</strong></p>
 <p>{% extends "base.html" %}</p>
 <p>{% block title %}Aim Lab - Precision Training{% endblock %}</p>
 <p>{% block content %}<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt;<br/>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython_stdlib.js"&gt;&lt;/script&gt;</p>
@@ -719,7 +716,7 @@ draw_robot()</pre>
 <p>end_time = time.time() + GAME_DURATION<br/>update_hud()<br/>spawn_target()<br/>check_time()</p>
 <p>start_game()<br/>&lt;/script&gt;<br/>{% endraw %}</p>
 <p>&lt;/body&gt;<br/>{% endblock %}</p>
-<h3><span style="background-color: #ffff00;">Aim Lab版本整合成完整的、修整過的版本，加入...</span></h3>
+<p><strong><span style="background-color: #ffff00;">Aim Lab版本整合成完整的、修整過的版本，加入...</span></strong></p>
 <p><span style="background-color: #ccffff;">圓點顏色</span>：亮天藍 #00aaff</p>
 <p><span style="background-color: #ccffff;">命中閃爍效果</span></p>
 <p><span style="background-color: #ccffff;">Miss 點擊紅色閃爍效果</span></p>
