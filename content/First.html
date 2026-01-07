@@ -2,7 +2,7 @@
         <head>
         <title>cmsimde_site</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,105 +142,8 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">期末報告2(程式新功能) << <a href='期末報告2(程式新功能).html'>Previous</a> <a href='我所添加的程式新功能.html'>Next</a> >> 我所添加的程式新功能<br /><h1>第二個程式的改良</h1>
-<p><span data-teams="true">以下是第二個程式的原始碼分析:</span></p>
-<p><span style="background-color: #ccffff;"><strong>一、整體架構總覽</strong></span></p>
-<p>這是一個：Flask 網頁 + Brython 寫的點擊小遊戲 + Ajax 上傳分數</p>
-<p>📌 技術角色分工：</p>
-<p>技術 用途<br/>Flask 後端伺服器、分數儲存<br/>Jinja2 HTML 模板引擎<br/>Brython 在瀏覽器執行 Python<br/>JavaScript (Ajax) 非同步送分數<br/>HTML / CSS 遊戲畫面</p>
-<p><br/><span style="background-color: #ccffff;"><strong>二、Jinja2 模板結構說明</strong></span></p>
-<p>{% extends "base.html" %}</p>
-<p>🔹 繼承 base.html</p>
-<p>使用 Flask 常見的 模板繼承</p>
-<p>base.html 通常包含：</p>
-<p>&lt;html&gt;</p>
-<p>&lt;head&gt;</p>
-<p>導覽列</p>
-<p>共用 CSS<br/>{% block title %}Brython 遊戲{% endblock %}<br/>🔹 設定頁面標題<br/>對應 base.html 裡的 {% block title %}</p>
-<p>瀏覽器標題顯示「Brython 遊戲」</p>
-<p><br/>{% block content %} ... {% endblock %}<br/>🔹 主內容區<br/>整個遊戲畫面都在這個區塊內</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>三、載入 Brython</strong></span></p>
-<p>&lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython.min.js"&gt;&lt;/script&gt; &lt;script src="https://cdn.jsdelivr.net/npm/brython@3.11.3/brython_stdlib.js"&gt;&lt;/script&gt;<br/>🔹 這兩個做什麼？<br/>檔案 功能<br/>brython.min.js Brython 核心<br/>brython_stdlib.js Python 標準函式庫<br/>📌 沒有它們，瀏覽器看不懂 &lt;script type="text/python"&gt;</p>
-<p><br/>&lt;body onload="brython(1)"&gt;<br/>🔹 啟動 Brython<br/>網頁載入完成 → 啟動 Brython</p>
-<p>1 代表「debug 模式」</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>四、遊戲畫面 HTML</strong></span></p>
-<p>&lt;h2 style="text-align: center;"&gt;🕹️ 點擊測試：點擊移動中的圓形！&lt;/h2&gt;<br/>➡️ 遊戲標題</p>
-<p><br/>&lt;div id="brython_div1" style="width: 600px; height: 400px; margin: 20px auto;"&gt;&lt;/div&gt;<br/>🔹 遊戲場地<br/>寬：600px</p>
-<p>高：400px</p>
-<p>所有遊戲元素都動態加到這裡</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>五、為什麼要用 {% raw %}？</strong></span></p>
-<p>{% raw %} &lt;script type="text/python"&gt;<br/>🔹 解決的問題<br/>Brython 裡有：</p>
-<p>f"{score}"</p>
-<p>{}</p>
-<p>⚠️ Jinja2 會誤以為是模板語法</p>
-<p>➡️ {% raw %} 告訴 Jinja2：「這一段我不解析，原封不動交給瀏覽器」</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>六、Brython：匯入模組</strong></span></p>
-<p>from browser import document, timer, window, ajax import random import time<br/>🔹 每個模組用途<br/>模組 功能<br/>document 操作 DOM<br/>timer setTimeout / setInterval<br/>window JS 的 window<br/>ajax Ajax 請求<br/>random 隨機位置、顏色<br/>time 計時</p>
-<p><br/><span style="background-color: #ccffff;"><strong>七、遊戲全域設定</strong></span></p>
-<p>GAME_DURATION = 30 score = 0 game_active = False<br/>變數 說明<br/>GAME_DURATION 遊戲時間（秒）<br/>score 玩家分數<br/>game_active 是否進行中</p>
-<p><br/><span style="background-color: #ccffff;"><strong>八、初始化遊戲區（DOM 操作）</strong></span></p>
-<p>game_area = document["brython_div1"]<br/>➡️ 抓取 &lt;div id="brython_div1"&gt;</p>
-<p><br/>game_area.style.border = "3px solid #333" game_area.style.backgroundColor = "#e0e0ff" game_area.style.position = "relative"</p>
-<p>🔹 為什麼要 position: relative？</p>
-<p>👉 讓裡面的圓形可以用 absolute 定位</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>九、分數與時間顯示區</strong></span></p>
-<p>score_display = document.createElement("div") timer_display = document.createElement("div")<br/>左上角：分數</p>
-<p>右上角：倒數時間</p>
-<p>📌 這些都是 動態建立的 DOM 元素</p>
-<p><span style="background-color: #ccffff;"><strong>十、目標圓形（遊戲核心）</strong></span></p>
-<p>target = document.createElement("div") target.style.width = "50px" target.style.height = "50px" target.style.borderRadius = "50%"<br/>➡️ 一個 50×50 的圓形</p>
-<p><br/>target.style.transition = "top 0.3s, left 0.3s"<br/>➡️ 平滑移動動畫</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>十一、移動圓形</strong></span></p>
-<p>def move_target():<br/>🔹 功能流程<br/>檢查遊戲是否進行中</p>
-<p>計算最大可移動範圍</p>
-<p>隨機產生新位置</p>
-<p>隨機顏色</p>
-<p>更新 top / left</p>
-<p>📌 min_y = 40<br/>→ 避免蓋住上方分數欄</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>十二、點擊事件</strong></span></p>
-<p>@target.bind("click") def hit_target(event):<br/>🔹 這裡很重要！<br/>只有點到圓形才會觸發</p>
-<p>不用額外計算距離</p>
-<p>流程：</p>
-<p>分數 +1</p>
-<p>更新顯示</p>
-<p>圓形立即移動</p>
-<p>stopPropagation() 防止事件冒泡</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>十三、Ajax 上傳分數（Brython → Flask）</strong></span></p>
-<p>req.open('POST', '{{ url_for("submit_score") }}', True)</p>
-<p>🔹 為什麼要 {% endraw %}？</p>
-<p>url_for() 必須由 Jinja2 處理</p>
-<p>Brython 不認得 Flask</p>
-<p>👉 這是 Flask + Brython 混用的標準寫法</p>
-<p><br/>json_payload = window.JSON.stringify({'score': final_score}) req.send(json_payload)<br/>➡️ 送出 JSON：</p>
-<p><br/>{ "score": 15 }</p>
-<p><br/><span style="background-color: #ccffff;"><strong>十四、倒數計時與遊戲結束</strong></span></p>
-<p>def check_time():<br/>每秒執行：</p>
-<p>計算剩餘時間</p>
-<p>時間到：</p>
-<p>停止遊戲</p>
-<p>上傳分數</p>
-<p>顯示結束畫面</p>
-<p>清除移動計時器</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>十五、重新開始</strong></span></p>
-<p>def restart_game(event):<br/>隱藏結束畫面</p>
-<p>重新初始化遊戲</p>
-<p></p>
-<p><span style="background-color: #ccffff;"><strong>十六、遊戲啟動流程</strong></span></p>
-<p>def start_game(): score = 0 game_active = True check_time() move_target() timer.set_interval(move_target, 800)<br/>📌 啟動時會：</p>
-<p>分數歸零</p>
-<p>啟動倒數</p>
-<p>每 0.8 秒移動一次圓形</p>
-<p><br/>start_game()<br/>➡️ 網頁一打開就開始遊戲 🎮</p>
-<br />期末報告2(程式新功能) << <a href='期末報告2(程式新功能).html'>Previous</a> <a href='我所添加的程式新功能.html'>Next</a> >> 我所添加的程式新功能</div>
+    <div id="tipue_search_content"> <a href='首頁大廳.html'>Next</a> >> 首頁大廳<br /><h1>First</h1>
+<br /> <a href='首頁大廳.html'>Next</a> >> 首頁大廳</div>
         
     <!-- footer -->
       <div class="container">
